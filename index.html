@@ -193,6 +193,28 @@ tr:nth-child(even) td{background:#F8FAFC}
 .fb-banner-txt{font-size:12px;color:#fff;line-height:1.6;padding-right:24px}
 .fb-banner-txt b{display:block;font-size:13px;margin-bottom:2px}
 .fb-banner-x{position:absolute;top:8px;right:12px;color:#fff;font-size:18px;cursor:pointer;opacity:.8;background:none;border:none;padding:4px}
+
+.saved-hdr{background:var(--n);padding:10px 16px;margin:0}
+.saved-hdr h3{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin:0}
+.saved-list{margin:0 16px 0}
+.saved-card{background:var(--w);border:1px solid var(--bd);border-radius:10px;margin-bottom:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.saved-card-top{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;cursor:pointer}
+.saved-card-top:active{background:#F8FAFC}
+.saved-card-info{flex:1;min-width:0}
+.saved-card-name{font-size:13px;font-weight:700;color:var(--n);margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.saved-card-addr{font-size:11px;color:var(--ts);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.saved-card-date{font-size:10px;color:var(--ts);margin-top:2px}
+.saved-card-nums{font-size:11px;color:var(--tm);margin-top:3px}
+.saved-card-actions{display:flex;gap:8px;flex-shrink:0;margin-left:10px}
+.saved-load-btn{background:var(--n);color:#fff;border:none;border-radius:6px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer}
+.saved-del-btn{background:#FEF2F2;color:var(--red);border:1px solid #FCA5A5;border-radius:6px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer}
+.saved-empty{padding:14px 16px;font-size:12px;color:var(--ts);text-align:center;font-style:italic}
+.save-est-btn{display:block;width:calc(100% - 32px);margin:10px 16px 0;background:var(--gl);color:var(--n);border:2px solid var(--g);border-radius:10px;padding:13px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-align:center}
+.save-est-btn:active{opacity:.8}
+.save-msg{margin:8px 16px 0;padding:10px 14px;border-radius:8px;font-size:12px;display:none}
+.save-msg.ok{display:block;background:#F0FDF4;border:1px solid #86EFAC;color:#14532D}
+.save-msg.err{display:block;background:#FEF2F2;border:1px solid #FCA5A5;color:#7F1D1D}
+.save-msg.loading{display:block;background:#EFF6FF;border:1px solid #93C5FD;color:#1E3A5F}
 </style></head><body><div class="app">
 <div class="hdr">
 <div class="hdr-inner">
@@ -212,7 +234,7 @@ tr:nth-child(even) td{background:#F8FAFC}
 <div class="fb-banner-txt" id="fb-banner-txt"></div>
 </div>
 <div class="pnl on" id="p-home"><div class="home">
-<div class="home-sub" style="font-size:11px;color:#B0B8C4;font-weight:400;margin-bottom:10px;padding-top:4px">V. 29</div>
+<div class="home-sub" style="font-size:11px;color:#B0B8C4;font-weight:400;margin-bottom:10px;padding-top:4px">V. 30</div>
 <div class="grid">
 <div class="tile" onclick="goScreen('maint')"><span class="tile-icon">✅</span><div class="tile-name">Maintenance Tracker</div><div class="tile-desc">Stay on top of your home</div></div>
 <div class="tile" onclick="openExt('https://carlcooper.exprealty.com/index.php?showagency=1&rtype=grid')"><span class="tile-icon">🔍</span><div class="tile-name">Search Homes</div><div class="tile-desc">Browse available listings</div></div>
@@ -289,6 +311,8 @@ tr:nth-child(even) td{background:#F8FAFC}
 </div>
 <div class="pnl" id="p-buyer">
 <div class="back-btn" onclick="goHome()"><span>&#8592;</span> Back to Home</div>
+<div class="saved-hdr"><h3>Saved Buyer Estimates</h3></div>
+<div class="saved-list" id="buyer-saved-list"><div class="saved-empty">No saved estimates yet. Run a calculation and save it below.</div></div>
 <div class="slbl">Your Details</div>
 <div class="card"><div class="fld"><label>Your Name <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--ts)">(optional)</span></label><input type="text" id="b-name" placeholder="First and Last Name"></div><div class="fld"><label>Property Address <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--ts)">(optional)</span></label><input type="text" id="b-addr" placeholder="123 Main St, City, TX 76086"></div></div>
 <div class="slbl">Loan Details</div>
@@ -310,11 +334,15 @@ tr:nth-child(even) td{background:#F8FAFC}
 <div class="tw"><div class="tw-hdr"><h3>Cash to Close Summary</h3></div><div class="row"><span class="rl">Closing Costs</span><span class="rv" id="btc-fc">--</span></div><div class="row"><span class="rl">Prepaid Costs</span><span class="rv" id="btc-pc">--</span></div><div class="row"><span class="rl" style="font-weight:700">Total Closing Costs</span><span class="rv big" id="btc-cc">--</span></div><div class="row"><span class="rl">Down Payment</span><span class="rv" id="btc-dn">--</span></div><div class="trow"><span class="trow-lbl">Estimated Cash to Close</span><span class="trow-val" id="btc-tot">--</span></div></div>
 <button class="amort-btn" onclick="togAmort()">View Amortization Schedule <span id="am-arr" style="display:inline-block;transition:transform .3s;font-size:10px">&#9660;</span></button>
 <div class="amort-body" id="amort"><table><thead><tr><th>Year</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead><tbody id="amort-tb"></tbody></table></div>
+<button class="save-est-btn" onclick="saveEstimate('buyer')">&#128190; Save This Estimate</button>
+<div class="save-msg" id="buyer-save-msg"></div>
 <button style="display:block;width:calc(100% - 32px);margin:14px 16px 0;background:var(--n);color:var(--g);border:2px solid var(--g);border-radius:10px;padding:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer" onclick="generatePDF('buyer')">&#128196; Download PDF Estimate</button><div class="share-bar"><button class="btn-share btn-share-res" onclick="shareResults('buyer')">&#128203; Share My Results</button><button class="btn-share btn-share-app" onclick="shareApp()">&#128279; Share This App</button></div>
 <div class="cta"><div class="cta-top"><p class="cta-p">These are estimates. For exact numbers I can connect you with the right lender and title company.</p><div class="cta-name">Carl Cooper</div><a href="tel:8174547267" class="cta-phone">817-454-7267</a></div><div class="cta-disc">Estimates only. Actual costs will vary. Broker commissions are not set by law and are fully negotiable.</div></div>
 </div></div>
 <div class="pnl" id="p-seller">
 <div class="back-btn" onclick="goHome()"><span>&#8592;</span> Back to Home</div>
+<div class="saved-hdr"><h3>Saved Seller Estimates</h3></div>
+<div class="saved-list" id="seller-saved-list"><div class="saved-empty">No saved estimates yet. Run a calculation and save it below.</div></div>
 <div class="slbl">Your Details</div>
 <div class="card"><div class="fld"><label>Your Name <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--ts)">(optional)</span></label><input type="text" id="s-name" placeholder="First and Last Name"></div><div class="fld"><label>Property Address <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--ts)">(optional)</span></label><input type="text" id="s-addr" placeholder="123 Main St, City, TX 76086"></div></div>
 <div class="slbl">Property Details</div>
@@ -329,6 +357,8 @@ tr:nth-child(even) td{background:#F8FAFC}
 <div id="s-res" style="display:none">
 <div class="hero" style="margin-top:14px"><div class="hero-lbl">Estimated Net Proceeds</div><div class="hero-amt" id="s-net-hero">$0</div><div class="hero-note" id="s-net-note">What you take home after all costs</div></div>
 <div class="tw" style="margin-top:10px"><div class="tw-hdr"><h3>Seller Net Sheet</h3></div><div class="tw-sec">Sale</div><div class="row"><span class="rl">Sale Price</span><span class="rv" id="sr-price">--</span></div><div class="tw-sec">Deductions</div><div class="row"><span class="rl">Mortgage Payoff</span><span class="rv neg" id="sr-bal">--</span></div><div class="row"><span class="rl">Buyer Agent Commission</span><span class="rv neg" id="sr-bc">--</span></div><div class="row"><span class="rl">Listing Agent Commission</span><span class="rv neg" id="sr-lc">--</span></div><div class="tw-sec">Title Fees</div><div class="row"><span class="rl">Owner's Title Policy</span><span class="rv neg" id="sr-tp">--</span></div><div class="row"><span class="rl">Escrow Fee</span><span class="rv neg" id="sr-ef">--</span></div><div class="row"><span class="rl">Attorney Doc Prep</span><span class="rv neg" id="sr-adp">--</span></div><div class="row"><span class="rl">Tax Certificate</span><span class="rv neg" id="sr-tc">--</span></div><div class="row"><span class="rl">Courier / UPS / FedEx</span><span class="rv neg" id="sr-cr">--</span></div><div class="tw-sec">Other Fees</div><div class="row"><span class="rl">Recording Fee</span><span class="rv neg" id="sr-rf">--</span></div><div class="row" id="sr-hw-row"><span class="rl">Home Warranty</span><span class="rv neg" id="sr-hw">--</span></div><div class="row" id="sr-sc-row"><span class="rl">Seller Concession</span><span class="rv neg" id="sr-sc">--</span></div><div class="row" id="sr-misc-row"><span class="rl">Repairs / Misc</span><span class="rv neg" id="sr-misc">--</span></div><div class="tw-sec">Date-Based Costs</div><div class="row"><span class="rl">Prorated Interest<small id="sr-int-note"></small></span><span class="rv neg" id="sr-int">--</span></div><div class="row"><span class="rl">Prorated Property Tax<small id="sr-tax-note"></small></span><span class="rv neg" id="sr-ptax">--</span></div><div class="row"><span class="rl" style="font-weight:700">Total Closing Costs</span><span class="rv bigneg" id="sr-total-costs">--</span></div><div class="trow"><span class="trow-lbl">Estimated Net Proceeds</span><span class="trow-val" id="sr-net">--</span></div></div>
+<button class="save-est-btn" onclick="saveEstimate('seller')">&#128190; Save This Estimate</button>
+<div class="save-msg" id="seller-save-msg"></div>
 <button style="display:block;width:calc(100% - 32px);margin:14px 16px 0;background:var(--n);color:var(--g);border:2px solid var(--g);border-radius:10px;padding:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer" onclick="generatePDF('seller')">&#128196; Download PDF Estimate</button><div class="share-bar"><button class="btn-share btn-share-res" onclick="shareResults('seller')">&#128203; Share My Results</button><button class="btn-share btn-share-app" onclick="shareApp()">&#128279; Share This App</button></div>
 <div class="cta"><div class="cta-top"><p class="cta-p">Thinking about selling? I would love to walk you through the process.</p><div class="cta-name">Carl Cooper</div><a href="tel:8174547267" class="cta-phone">817-454-7267</a></div><div class="cta-disc">Estimates only. Actual costs will vary. Broker commissions are not set by law and are fully negotiable.</div></div>
 </div></div>
@@ -369,6 +399,16 @@ tr:nth-child(even) td{background:#F8FAFC}
 </div>
 <script>
 var bD=null,amOn=false,insMode="mo";
+var DEVICE_ID=(function(){var k="hh_device_id",v=localStorage.getItem(k);if(!v){v="dev_"+Math.random().toString(36).substr(2,12)+"_"+Date.now();localStorage.setItem(k,v);}return v;})();
+function apiCall(path,data,cb){
+  var x=new XMLHttpRequest();
+  x.open("POST",path,true);
+  x.setRequestHeader("Content-Type","application/json");
+  x.onload=function(){try{cb(null,JSON.parse(x.responseText));}catch(e){cb(e,null);}};
+  x.onerror=function(){cb(new Error("Network error"),null);};
+  x.send(JSON.stringify(data));
+}
+
 var FS="https://formspree.io/f/xdaqzjkr";
 var APP_URL="https://the-home-hub-a8t.pages.dev";
 var MT_KEY="mt_data_v2";
@@ -388,7 +428,7 @@ function sv(id,v){var e=el(id);if(e)e.textContent=v;}
 function openExt(url){window.open(url,"_blank");}
 var SCREENS=["p-home","p-buyer","p-seller","p-maint","p-lenders","p-schedule"];
 function goHome(){for(var i=0;i<SCREENS.length;i++)el(SCREENS[i]).className="pnl";el("p-home").className="pnl on";el("mt-footer").className="mt-footer";window.scrollTo(0,0);}
-function goScreen(n){for(var i=0;i<SCREENS.length;i++)el(SCREENS[i]).className="pnl";el("p-"+n).className="pnl on";window.scrollTo(0,0);if(n==="maint")mtInit();}
+function goScreen(n){for(var i=0;i<SCREENS.length;i++)el(SCREENS[i]).className="pnl";el("p-"+n).className="pnl on";window.scrollTo(0,0);if(n==="maint")mtInit();if(n==="buyer")loadSavedEstimates("buyer");if(n==="seller")loadSavedEstimates("seller");}
 function gPrice(){return gv("b-price");}
 function gDnPct(){return gv("b-dn");}
 function gDn(){return Math.round(gPrice()*gDnPct()/100);}
@@ -787,6 +827,142 @@ function submitSchedule(){
   out.className='msg ok';
   out.textContent='Sending your request...';
   form.submit();
+}
+function saveEstimate(type){
+  var nameEl=type==="buyer"?document.getElementById("b-name"):document.getElementById("s-name");
+  var addrEl=type==="buyer"?document.getElementById("b-addr"):document.getElementById("s-addr");
+  var msgEl=document.getElementById(type+"-save-msg");
+  var name=(nameEl.value||"").trim();
+  var addr=(addrEl.value||"").trim();
+  if(!name||!addr){msgEl.className="save-msg err";msgEl.textContent="Please enter your name and address before saving.";return;}
+  msgEl.className="save-msg loading";msgEl.textContent="Saving...";
+  var payload={device_id:DEVICE_ID,type:type,name:name,address:addr};
+  if(type==="buyer"&&bD){
+    payload.price=bD.price;payload.dp=bD.dp;payload.dn=bD.dn;payload.bl=bD.bl;
+    payload.rate=bD.rate;payload.term=bD.term;payload.tax=bD.tax;payload.ins=bD.ins;
+    payload.hoa=bD.hoa;payload.lt=bD.lt;payload.miMo=bD.miMo;payload.piti=bD.piti;
+    payload.cashToClose=document.getElementById("btc-tot")?document.getElementById("btc-tot").textContent:"--";
+  }else if(type==="seller"){
+    payload.price=parseFloat(document.getElementById("s-price").value)||0;
+    payload.bal=parseFloat(document.getElementById("s-bal").value)||0;
+    payload.bc=parseFloat(document.getElementById("s-bc").value)||0;
+    payload.lc=parseFloat(document.getElementById("s-lc").value)||0;
+    payload.closeDate=document.getElementById("s-close-date").value||"";
+    payload.netProceeds=document.getElementById("sr-net")?document.getElementById("sr-net").textContent:"--";
+    payload.totalCosts=document.getElementById("sr-total-costs")?document.getElementById("sr-total-costs").textContent:"--";
+  }
+  apiCall("/api/save-estimate",payload,function(err,res){
+    if(err||!res||!res.success){msgEl.className="save-msg err";msgEl.textContent="Could not save. Please try again.";return;}
+    msgEl.className="save-msg ok";msgEl.textContent="Saved! You can find it at the top of this screen.";
+    loadSavedEstimates(type);
+    notifySave(type,name,addr,payload);
+  });
+}
+function loadSavedEstimates(type){
+  var listEl=document.getElementById(type+"-saved-list");
+  listEl.innerHTML='<div class="saved-empty" style="color:var(--ts);font-style:italic;padding:10px 0;text-align:center;font-size:12px">Loading...</div>';
+  apiCall("/api/get-estimates",{device_id:DEVICE_ID,type:type},function(err,res){
+    if(err||!res||!res.estimates||res.estimates.length===0){
+      listEl.innerHTML='<div class="saved-empty">No saved estimates yet. Run a calculation and save it below.</div>';
+      return;
+    }
+    var html2="";
+    for(var i=0;i<res.estimates.length;i++){
+      var e=res.estimates[i];
+      savedEstimatesCache[e.id]=e;
+      var d=new Date(e.created_at);
+      var ds=(d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear();
+      var nums="";
+      if(type==="buyer"){
+        nums="Payment: "+(e.piti?"$"+Math.round(e.piti).toLocaleString()+"/mo":"--")+"  Cash to Close: "+(e.cashToClose||"--");
+      }else{
+        nums="Sale Price: $"+(e.price?Math.round(e.price).toLocaleString():"--")+"  Net: "+(e.netProceeds||"--");
+      }
+      html2+='<div class="saved-card"><div class="saved-card-top"><div class="saved-card-info">';
+      html2+='<div class="saved-card-name">'+e.name+'</div>';
+      html2+='<div class="saved-card-addr">'+e.address+'</div>';
+      html2+='<div class="saved-card-nums">'+nums+'</div>';
+      html2+='<div class="saved-card-date">Saved '+ds+'</div>';
+      html2+='</div><div class="saved-card-actions">';
+      html2+='<button class="saved-load-btn" onclick="loadEstimateById(\''+type+'\',\''+e.id+'\')">Load</button>';
+      html2+='<button class="saved-del-btn" onclick="deleteEstimate(\''+type+'\',\''+e.id+'\')">&#128465;</button>';
+      html2+='</div></div></div>';
+    }
+    listEl.innerHTML=html2;
+  });
+}
+
+function deleteEstimate(type,id){
+  if(!confirm("Delete this saved estimate?"))return;
+  apiCall("/api/delete-estimate",{device_id:DEVICE_ID,id:id},function(err,res){
+    if(err||!res||!res.success){alert("Could not delete. Please try again.");return;}
+    loadSavedEstimates(type);
+  });
+}
+var savedEstimatesCache={};
+function loadEstimateById(type,id){
+  var e=savedEstimatesCache[id];
+  if(e)loadEstimate(type,id,e);
+}
+function loadEstimate(type,id,e){
+  if(type==="buyer"){
+    if(e.price)document.getElementById("b-price").value=e.price;
+    if(e.dp)document.getElementById("b-dn").value=e.dp;
+    if(e.rate)document.getElementById("b-rate").value=e.rate;
+    if(e.term)document.getElementById("b-term").value=e.term;
+    if(e.tax)document.getElementById("b-tax").value=e.tax;
+    if(e.ins)document.getElementById("b-ins").value=e.ins;
+    if(e.hoa)document.getElementById("b-hoa").value=e.hoa;
+    if(e.lt)document.getElementById("b-lt").value=e.lt;
+    if(e.name)document.getElementById("b-name").value=e.name;
+    if(e.address)document.getElementById("b-addr").value=e.address;
+    onPrice();onDn();updateMI();
+    document.querySelector("#p-buyer .slbl").scrollIntoView({behavior:"smooth"});
+  }else{
+    if(e.price)document.getElementById("s-price").value=e.price;
+    if(e.bal)document.getElementById("s-bal").value=e.bal;
+    if(e.bc)document.getElementById("s-bc").value=e.bc;
+    if(e.lc)document.getElementById("s-lc").value=e.lc;
+    if(e.closeDate)document.getElementById("s-close-date").value=e.closeDate;
+    if(e.name)document.getElementById("s-name").value=e.name;
+    if(e.address)document.getElementById("s-addr").value=e.address;
+    document.querySelector("#p-seller .slbl").scrollIntoView({behavior:"smooth"});
+  }
+}
+function notifySave(type,name,addr,payload){
+  try{
+    var d={};
+    if(type==="buyer"){
+      d["_subject"]="Buyer Estimate Saved - "+name+" - "+addr;
+      d["Type"]="Buyer Estimate Saved";
+      d["Name"]=name;d["Address"]=addr;
+      d["Purchase Price"]="$"+(Math.round(payload.price||0)).toLocaleString();
+      d["Down Payment"]=(payload.dp||0)+"%";
+      d["Loan Amount"]="$"+(Math.round(payload.bl||0)).toLocaleString();
+      d["Rate"]=(payload.rate||0)+"% / "+(payload.term||30)+" yr";
+      d["Monthly Payment"]=payload.piti?"$"+Math.round(payload.piti).toLocaleString()+"/mo":"--";
+      d["Cash to Close"]=payload.cashToClose||"--";
+    }else{
+      d["_subject"]="Seller Estimate Saved - "+name+" - "+addr;
+      d["Type"]="Seller Estimate Saved";
+      d["Name"]=name;d["Address"]=addr;
+      d["Sale Price"]="$"+(Math.round(payload.price||0)).toLocaleString();
+      d["Net Proceeds"]=payload.netProceeds||"--";
+      d["Total Costs"]=payload.totalCosts||"--";
+      d["Closing Date"]=payload.closeDate||"Not entered";
+    }
+    var x=new XMLHttpRequest();
+    x.open("POST",FS,true);
+    x.setRequestHeader("Content-Type","application/json");
+    x.setRequestHeader("Accept","application/json");
+    x.send(JSON.stringify(d));
+  }catch(e){}
+}
+function initSavedEstimates(){
+  var pBuyer=document.getElementById("p-buyer");
+  var pSeller=document.getElementById("p-seller");
+  if(pBuyer&&pBuyer.classList.contains("on"))loadSavedEstimates("buyer");
+  if(pSeller&&pSeller.classList.contains("on"))loadSavedEstimates("seller");
 }
 function detectFBBrowser(){
   var ua=navigator.userAgent||'';
