@@ -14,15 +14,15 @@ body{background:var(--bg);color:var(--t);font-family:-apple-system,BlinkMacSyste
 .app{max-width:520px;margin:0 auto;padding-bottom:52px;overflow-x:hidden;width:100%;background:var(--bg)}
 .hdr{background:var(--n);padding:28px 16px 0}
 .hdr-inner{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.hdr-l-badge{width:150px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.hdr-l-badge{width:100px;flex-shrink:0;display:flex;align-items:center;justify-content:flex-start}
 .hdr-l-badge img{width:82px;height:auto}
 .hdr-center{flex:1;text-align:center;min-width:0}
 .hdr-name{font-family:Georgia,serif;font-size:26px;font-weight:400;color:#fff;margin-bottom:4px}
 .hdr-brok{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8A9BAD;margin-bottom:2px}
 .hdr-exp-line{font-size:11px;color:#8A9BAD;margin-bottom:8px}
 .hdr-phone{font-size:16px;color:var(--g);letter-spacing:.5px;text-decoration:none;display:block}
-.hdr-hs{width:86px;height:86px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--g)}
-.hdr-hs img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.hdr-hs{width:100px;height:86px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--g);display:flex;align-items:center;justify-content:flex-end}
+.hdr-hs img{width:86px;height:86px;border-radius:50%;object-fit:cover;object-position:center top}
 .share-strip{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.07);border-radius:20px;padding:10px 14px;margin:14px 0 0}
 .share-strip span{font-size:12px;color:#C8CEDA}
 .share-strip b{font-size:12px;color:var(--g);font-weight:600}
@@ -234,7 +234,7 @@ tr:nth-child(even) td{background:#F8FAFC}
 <div class="fb-banner-txt" id="fb-banner-txt"></div>
 </div>
 <div class="pnl on" id="p-home"><div class="home">
-<div class="home-sub" style="font-size:11px;color:#B0B8C4;font-weight:400;margin-bottom:10px;padding-top:4px">V. 30</div>
+<div class="home-sub" style="font-size:11px;color:#B0B8C4;font-weight:400;margin-bottom:10px;padding-top:4px">V. 31</div>
 <div class="grid">
 <div class="tile" onclick="goScreen('maint')"><span class="tile-icon">✅</span><div class="tile-name">Maintenance Tracker</div><div class="tile-desc">Stay on top of your home</div></div>
 <div class="tile" onclick="openExt('https://carlcooper.exprealty.com/index.php?showagency=1&rtype=grid')"><span class="tile-icon">🔍</span><div class="tile-name">Search Homes</div><div class="tile-desc">Browse available listings</div></div>
