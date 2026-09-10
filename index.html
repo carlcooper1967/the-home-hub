@@ -101,13 +101,13 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;background:var(--n);b
 .tw-sec{padding:5px 16px 4px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ts);background:#F8FAFC;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
 .row{display:flex;justify-content:space-between;align-items:center;padding:9px 16px;border-bottom:1px solid var(--bd);min-width:0}
 .row:last-child{border-bottom:none}
-.rl{color:var(--tm);font-size:12px;flex:1;padding-right:8px;line-height:1.4;min-width:0;overflow:hidden}
+.rl{color:var(--tm);font-size:11px;flex:1;padding-right:6px;line-height:1.4;min-width:0;overflow:hidden}
 .rl small{font-size:10px;color:var(--ts);display:block;margin-top:1px;font-weight:400}
 .rv{font-family:Georgia,serif;font-size:16px;font-weight:700;color:var(--t);white-space:nowrap}
 .rv.neg{color:var(--red)}
 .rv.big{font-size:19px;color:var(--n)}
 .rv.bigneg{font-size:19px;color:var(--red)}
-.ed{width:80px;flex-shrink:0;background:#FAFBFC;border:1.5px solid var(--bd);border-radius:6px;color:var(--t);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:14px;font-weight:600;padding:5px 7px;outline:none;text-align:right;transition:border-color .2s}
+.ed{width:72px;flex-shrink:0;background:#FAFBFC;border:1.5px solid var(--bd);border-radius:6px;color:var(--t);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:13px;font-weight:600;padding:4px 6px;outline:none;text-align:right;transition:border-color .2s}
 .ed:focus{border-color:var(--blue)}
 .trow{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;background:var(--gl);border-top:2px solid var(--g)}
 .trow-lbl{color:var(--n);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1px}
@@ -215,6 +215,19 @@ tr:nth-child(even) td{background:#F8FAFC}
 .save-msg.ok{display:block;background:#F0FDF4;border:1px solid #86EFAC;color:#14532D}
 .save-msg.err{display:block;background:#FEF2F2;border:1px solid #FCA5A5;color:#7F1D1D}
 .save-msg.loading{display:block;background:#EFF6FF;border:1px solid #93C5FD;color:#1E3A5F}
+
+.mt-pin-screen{padding:20px 16px}
+.mt-pin-title{font-family:Georgia,serif;font-size:20px;font-weight:400;color:var(--n);text-align:center;margin-bottom:6px}
+.mt-pin-sub{font-size:12px;color:var(--ts);text-align:center;line-height:1.6;margin-bottom:18px}
+.pin-input{display:flex;gap:10px;justify-content:center;margin:14px 0}
+.pin-digit{width:50px;height:60px;border:2px solid var(--bd);border-radius:10px;font-size:24px;font-weight:700;text-align:center;color:var(--n);background:#FAFBFC;outline:none;-webkit-appearance:none}
+.pin-digit:focus{border-color:var(--blue)}
+.mt-sync-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--gl);border-bottom:1px solid var(--g);font-size:11px;color:var(--tm)}
+.mt-sync-status{display:flex;align-items:center;gap:5px}
+.mt-sync-dot{width:8px;height:8px;border-radius:50%;background:#22C55E;flex-shrink:0}
+.mt-sync-dot.syncing{background:var(--amber);animation:pulse 1s infinite}
+.mt-sync-dot.error{background:var(--red)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 </style></head><body><div class="app">
 <div class="hdr">
 <div class="hdr-inner">
@@ -234,7 +247,7 @@ tr:nth-child(even) td{background:#F8FAFC}
 <div class="fb-banner-txt" id="fb-banner-txt"></div>
 </div>
 <div class="pnl on" id="p-home"><div class="home">
-<div class="home-sub" style="font-size:11px;color:#B0B8C4;font-weight:400;margin-bottom:10px;padding-top:4px">V. 31</div>
+<div class="home-sub" style="font-size:11px;color:#B0B8C4;font-weight:400;margin-bottom:10px;padding-top:4px">V. 32</div>
 <div class="grid">
 <div class="tile" onclick="goScreen('maint')"><span class="tile-icon">✅</span><div class="tile-name">Maintenance Tracker</div><div class="tile-desc">Stay on top of your home</div></div>
 <div class="tile" onclick="openExt('https://carlcooper.exprealty.com/index.php?showagency=1&rtype=grid')"><span class="tile-icon">🔍</span><div class="tile-name">Search Homes</div><div class="tile-desc">Browse available listings</div></div>
@@ -364,6 +377,21 @@ tr:nth-child(even) td{background:#F8FAFC}
 </div></div>
 <div class="pnl" id="p-maint">
 <div class="back-btn" onclick="goHome()"><span>&#8592;</span> Back to Home</div>
+<div id="mt-pin-screen" style="display:none">
+<div class="mt-pin-screen">
+<div class="mt-pin-title" id="mt-pin-title">Create Your PIN</div>
+<div class="mt-pin-sub" id="mt-pin-sub">Set a 4-digit PIN to protect and recover your maintenance data across devices.</div>
+<div class="pin-input">
+<input class="pin-digit" id="pin-1" type="tel" maxlength="1" oninput="pinNext(1)" pattern="[0-9]">
+<input class="pin-digit" id="pin-2" type="tel" maxlength="1" oninput="pinNext(2)" pattern="[0-9]">
+<input class="pin-digit" id="pin-3" type="tel" maxlength="1" oninput="pinNext(3)" pattern="[0-9]">
+<input class="pin-digit" id="pin-4" type="tel" maxlength="1" oninput="pinNext(4)" pattern="[0-9]">
+</div>
+<div class="msg" id="mt-pin-msg"></div>
+<button class="btn-calc" style="margin:14px 0 0" onclick="submitPin()">Continue</button>
+<button class="btn-out" style="margin:10px 0 0" id="mt-recover-btn" onclick="showRecover()" style="display:none">Recover Existing Data</button>
+</div>
+</div>
 <div id="mt-setup-screen"><div class="mt-setup">
 <div class="mt-setup-icon">🏡</div>
 <div class="mt-setup-title">Home Maintenance Tracker</div>
@@ -374,6 +402,10 @@ tr:nth-child(even) td{background:#F8FAFC}
 <div class="mt-setup-disc">DISCLAIMER: This maintenance schedule is provided as a general guideline for informational purposes only. Tasks and timing are suggestions based on typical North Texas climate conditions and may vary depending on your specific home, location, and circumstances. Carl Cooper and Lynch Legacy Realty Group make no warranty regarding the completeness or accuracy of this information. Always consult a licensed professional before performing or scheduling home maintenance or repairs. Carl Cooper is a licensed real estate broker and is not a home inspector, contractor, or maintenance professional.</div>
 </div></div>
 <div id="mt-main-screen" style="display:none">
+<div class="mt-sync-bar">
+<div class="mt-sync-status"><div class="mt-sync-dot" id="mt-sync-dot"></div><span id="mt-sync-txt">Synced</span></div>
+<span id="mt-sync-addr" style="color:var(--ts);font-size:10px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span>
+</div>
 <div class="mt-nav"><div class="mt-nav-arr" onclick="mtSwipe(-1)">&#8592;</div><div class="mt-nav-center"><div class="mt-nav-month" id="mt-nav-month">January</div><div class="mt-nav-year" id="mt-nav-year">2026</div></div><div class="mt-nav-arr" onclick="mtSwipe(1)">&#8594;</div></div>
 <div class="mt-progress"><div class="mt-progress-lbl"><span id="mt-prog-month">Progress</span><b id="mt-progress-txt">0 of 0</b></div><div class="mt-progress-bar"><div class="mt-progress-fill" id="mt-progress-fill" style="width:0%"></div></div></div>
 <button class="mt-export-btn" onclick="mtExport()">&#128196; Export My Maintenance Record</button>
@@ -451,9 +483,115 @@ function reCalc(){if(!bD)return;var im=gv("p-ins-mo")||14,tm=gv("p-tax-mo")||3;v
 function buildAmort(loan,rate,years,pi){var mr=rate/100/12,tb=el("amort-tb");tb.innerHTML="";var bal=loan;for(var y=1;y<=years;y++){var yp=0,yi=0;for(var m=0;m<12;m++){if(bal<=0)break;var interest=bal*mr,principal=Math.min(pi-interest,bal);yi+=interest;yp+=principal;bal-=principal;if(bal<0.01)bal=0;}var tr=document.createElement("tr");var t1=document.createElement("td");t1.textContent="Yr "+y;var t2=document.createElement("td");t2.textContent=ff(yp);var t3=document.createElement("td");t3.textContent=ff(yi);var t4=document.createElement("td");t4.textContent=ff(Math.max(bal,0));tr.appendChild(t1);tr.appendChild(t2);tr.appendChild(t3);tr.appendChild(t4);tb.appendChild(tr);}}
 function togAmort(){amOn=!amOn;el("amort").className=amOn?"amort-body on":"amort-body";el("am-arr").style.transform=amOn?"rotate(180deg)":"";}
 function sCalc(){var price=gv("s-price"),bal=gv("s-bal"),bc=gv("s-bc"),lc=gv("s-lc"),sRate=gv("s-rate");var tp=gv("s-tp")||Math.round(price*0.006);var ef=gv("s-ef"),adp=gv("s-adp"),tc=gv("s-tc"),cr=gv("s-cr"),rf=gv("s-rf"),hw=gv("s-hw"),sc=gv("s-sc"),misc=gv("s-misc"),atax=gv("s-atax");var bcA=Math.round(price*bc/100),lcA=Math.round(price*lc/100);var closeDateStr=el("s-close-date").value,proratedInt=0,proratedTax=0,intNote="",taxNote="";if(closeDateStr){var cd=new Date(closeDateStr+"T12:00:00"),dayOfMonth=cd.getDate();proratedInt=Math.round(bal*sRate/100/365*dayOfMonth*100)/100;intNote="Days 1-"+dayOfMonth+" of closing month at "+sRate+"%";var jan1=new Date(cd.getFullYear(),0,1),diffMs=cd-jan1,daysFromJan1=Math.floor(diffMs/(1000*60*60*24))+1;proratedTax=Math.round(atax/365*daysFromJan1*100)/100;taxNote=daysFromJan1+" days from Jan 1 to closing";}else{intNote="Enter closing date to calculate";taxNote="Enter closing date to calculate";}var titleTotal=tp+ef+adp+tc+cr,otherTotal=rf+hw+sc+misc,closingTotal=titleTotal+otherTotal+bcA+lcA+proratedInt+proratedTax,net=price-bal-closingTotal;var heroEl=el("s-net-hero");if(net<0){heroEl.className="hero-amt neg";sv("s-net-hero","-"+ff(Math.abs(net)));sv("s-net-note","Seller owes at closing");}else{heroEl.className="hero-amt";sv("s-net-hero",ff(net));sv("s-net-note","Estimated proceeds after all costs");}sv("sr-price",ff(price));sv("sr-bal","-"+ff(bal));sv("sr-bc","-"+ff(bcA));sv("sr-lc","-"+ff(lcA));sv("sr-tp","-"+ff(tp));sv("sr-ef","-"+ff(ef));sv("sr-adp","-"+ff(adp));sv("sr-tc","-"+ff(tc));sv("sr-cr","-"+ff(cr));sv("sr-rf","-"+ff(rf));sv("sr-hw","-"+ff(hw));sv("sr-sc","-"+ff(sc));sv("sr-misc","-"+ff(misc));sv("sr-int",proratedInt>0?"-"+f2(proratedInt):"--");sv("sr-ptax",proratedTax>0?"-"+f2(proratedTax):"--");sv("sr-int-note",intNote);sv("sr-tax-note",taxNote);sv("sr-total-costs","-"+ff(closingTotal));var netEl=el("sr-net");if(net<0){netEl.className="trow-val neg";sv("sr-net","-"+ff(Math.abs(net)));}else{netEl.className="trow-val";sv("sr-net",ff(net));}el("sr-hw-row").style.display=hw>0?"":"none";el("sr-sc-row").style.display=sc>0?"":"none";el("sr-misc-row").style.display=misc>0?"":"none";el("s-res").style.display="";setTimeout(function(){el("s-res").scrollIntoView({behavior:"smooth",block:"start"});},100);notify("seller");}
-function mtSave(){try{window.storage.set(MT_KEY,JSON.stringify(mtData),false);}catch(e){try{localStorage.setItem(MT_KEY,JSON.stringify(mtData));}catch(e2){}}}
+var MT_PIN_KEY="hh_mt_pin";
+var MT_CLOUD_ID="hh_mt_cloud_id";
+function pinNext(n){
+  var v=document.getElementById("pin-"+n).value;
+  if(v&&n<4)document.getElementById("pin-"+(n+1)).focus();
+}
+function getPin(){
+  var p="";
+  for(var i=1;i<=4;i++)p+=document.getElementById("pin-"+i).value||"";
+  return p;
+}
+function clearPin(){for(var i=1;i<=4;i++)document.getElementById("pin-"+i).value="";}
+function submitPin(){
+  var pin=getPin();
+  var msg=document.getElementById("mt-pin-msg");
+  if(pin.length!==4){msg.className="msg err";msg.textContent="Please enter a 4-digit PIN.";return;}
+  var mode=document.getElementById("mt-pin-title").getAttribute("data-mode")||"create";
+  if(mode==="recover"){
+    recoverData(pin);
+  }else{
+    localStorage.setItem(MT_PIN_KEY,pin);
+    var cloudId="mt_"+Math.random().toString(36).substr(2,12)+"_"+Date.now();
+    localStorage.setItem(MT_CLOUD_ID,cloudId);
+    mtData.cloud_id=cloudId;
+    mtData.pin=pin;
+    el("mt-pin-screen").style.display="none";
+    el("mt-setup-screen").style.display="";
+  }
+}
+function showRecover(){
+  var title=el("mt-pin-title");
+  var sub=el("mt-pin-sub");
+  title.textContent="Recover Your Data";
+  title.setAttribute("data-mode","recover");
+  sub.textContent="Enter your 4-digit PIN to restore your maintenance data.";
+  clearPin();
+  el("mt-pin-msg").className="msg";
+}
+function recoverData(pin){
+  var msg=el("mt-pin-msg");
+  msg.className="msg info";msg.textContent="Looking up your data...";
+  apiCall("/api/get-mt-data",{pin:pin},function(err,res){
+    if(err||!res||!res.success||!res.data){
+      msg.className="msg err";msg.textContent="No data found for that PIN. Please check and try again.";
+      return;
+    }
+    try{
+      mtData=JSON.parse(res.data);
+      mtData.pin=pin;
+      localStorage.setItem(MT_PIN_KEY,pin);
+      if(mtData.cloud_id)localStorage.setItem(MT_CLOUD_ID,mtData.cloud_id);
+      mtSave();
+      el("mt-pin-screen").style.display="none";
+      el("mt-setup-screen").style.display="none";
+      el("mt-main-screen").style.display="";
+      el("mt-footer").className="mt-footer show";
+      mtCurIdx=new Date().getMonth();
+      mtCurYear=new Date().getFullYear();
+      mtBuildSlides();
+      mtGoTo(mtCurIdx,false);
+    }catch(e){
+      msg.className="msg err";msg.textContent="Error restoring data. Please try again.";
+    }
+  });
+}
+function mtSyncToCloud(){
+  var pin=localStorage.getItem(MT_PIN_KEY);
+  var cloudId=localStorage.getItem(MT_CLOUD_ID);
+  if(!pin||!cloudId)return;
+  var dot=el("mt-sync-dot");var txt=el("mt-sync-txt");
+  if(dot)dot.className="mt-sync-dot syncing";
+  if(txt)txt.textContent="Syncing...";
+  var payload={pin:pin,cloud_id:cloudId,data:JSON.stringify(mtData)};
+  apiCall("/api/save-mt-data",payload,function(err,res){
+    if(dot)dot.className=err?"mt-sync-dot error":"mt-sync-dot";
+    if(txt)txt.textContent=err?"Sync error":"Synced";
+  });
+}
+function mtSave(){try{window.storage.set(MT_KEY,JSON.stringify(mtData),false);}catch(e){try{localStorage.setItem(MT_KEY,JSON.stringify(mtData));}catch(e2){}}mtSyncToCloud();}
 function mtLoad(cb){try{window.storage.get(MT_KEY,false).then(function(r){if(r&&r.value){try{mtData=JSON.parse(r.value);}catch(e){}}cb();}).catch(function(){try{var s=localStorage.getItem(MT_KEY);if(s)mtData=JSON.parse(s);}catch(e){}cb();});}catch(e){try{var s2=localStorage.getItem(MT_KEY);if(s2)mtData=JSON.parse(s2);}catch(e2){}cb();}}
-function mtInit(){mtLoad(function(){if(!mtData.addr){el("mt-setup-screen").style.display="";el("mt-main-screen").style.display="none";}else{el("mt-setup-screen").style.display="none";el("mt-main-screen").style.display="";el("mt-footer").className="mt-footer show";mtCurIdx=new Date().getMonth();mtCurYear=new Date().getFullYear();mtBuildSlides();mtGoTo(mtCurIdx,false);}});}
+function mtInit(){mtLoad(function(){
+  var existingPin=localStorage.getItem(MT_PIN_KEY);
+  if(!mtData.addr){
+    if(!existingPin){
+      var title=el("mt-pin-title");
+      var recoverBtn=el("mt-recover-btn");
+      if(title){title.textContent="Create Your PIN";title.setAttribute("data-mode","create");}
+      if(recoverBtn)recoverBtn.style.display="block";
+      el("mt-pin-screen").style.display="";
+      el("mt-setup-screen").style.display="none";
+      el("mt-main-screen").style.display="none";
+    }else{
+      el("mt-pin-screen").style.display="none";
+      el("mt-setup-screen").style.display="";
+      el("mt-main-screen").style.display="none";
+    }
+  }else{
+    el("mt-pin-screen").style.display="none";
+    el("mt-setup-screen").style.display="none";
+    el("mt-main-screen").style.display="";
+    el("mt-footer").className="mt-footer show";
+    mtCurIdx=new Date().getMonth();
+    mtCurYear=new Date().getFullYear();
+    mtBuildSlides();
+    mtGoTo(mtCurIdx,false);
+    var addr=el("mt-sync-addr");
+    if(addr)addr.textContent=mtData.addr||"";
+  }
+});}
 function mtSetup(){var addr=(el("mt-addr").value||"").trim(),name=(el("mt-name").value||"").trim(),msg=el("mt-setup-msg");if(!addr){msg.className="msg err";msg.textContent="Please enter your property address.";return;}mtData.addr=addr;mtData.name=name;if(!mtData.tasks)mtData.tasks={};mtSave();notifyMT("setup");el("mt-setup-screen").style.display="none";el("mt-main-screen").style.display="";el("mt-footer").className="mt-footer show";mtCurIdx=new Date().getMonth();mtCurYear=new Date().getFullYear();mtBuildSlides();mtGoTo(mtCurIdx,false);}
 function mtTaskKey(y,m,i){return y+"_"+m+"_"+i;}
 function mtBuildSlides(){var slider=el("mt-slider");slider.innerHTML="";for(var m=0;m<12;m++){var slide=document.createElement("div");slide.className="mt-slide";slide.id="mt-slide-"+m;var tasks=TASKS[String(m)]||[];var html="";var tip=TIPS[String(m)];if(tip){html+="<div class='mt-tip'><b>Carl's Tip:</b> "+tip+"</div>";}html+="<div class='mt-month-card'><div class='mt-month-hdr'><h3>"+MONTHS[m]+" Tasks</h3></div>";for(var i=0;i<tasks.length;i++){var k=mtTaskKey(mtCurYear,m,i);var done=mtData.tasks[k];html+="<div class='mt-task' onclick='mtToggle("+m+","+i+")'><div class='mt-cb"+(done?" checked":"")+"'  id='cb_"+k+"'>"+(done?"&#10003;":"")+"</div><div><div class='mt-task-lbl"+(done?" done":"")+"'>" +tasks[i]+"</div>"+(done?"<div class='mt-task-date'>Completed "+done.date+"</div>":"")+"</div></div>";}html+="</div>";slide.innerHTML=html;slider.appendChild(slide);}}
