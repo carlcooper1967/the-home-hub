@@ -107,7 +107,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;background:var(--n);b
 .rv.neg{color:var(--red)}
 .rv.big{font-size:19px;color:var(--n)}
 .rv.bigneg{font-size:19px;color:var(--red)}
-.ed{width:72px;flex-shrink:0;background:#FAFBFC;border:1.5px solid var(--bd);border-radius:6px;color:var(--t);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:13px;font-weight:600;padding:4px 6px;outline:none;text-align:right;transition:border-color .2s}
+.ed{width:68px;flex-shrink:0;background:#FAFBFC;border:1.5px solid var(--bd);border-radius:6px;color:var(--t);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:12px;font-weight:600;padding:4px 5px;outline:none;text-align:right;transition:border-color .2s}
 .ed:focus{border-color:var(--blue)}
 .trow{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;background:var(--gl);border-top:2px solid var(--g)}
 .trow-lbl{color:var(--n);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1px}
@@ -228,6 +228,50 @@ tr:nth-child(even) td{background:#F8FAFC}
 .mt-sync-dot.syncing{background:var(--amber);animation:pulse 1s infinite}
 .mt-sync-dot.error{background:var(--red)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.simp-field{padding:14px 16px;border-bottom:1px solid var(--bd)}
+.simp-field:last-child{border-bottom:none}
+.simp-label{font-size:13px;font-weight:600;color:var(--n);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.simp-label span{font-size:10px;font-weight:400;color:var(--ts)}
+.simp-input{display:flex;align-items:center;background:#F8FAFC;border:1.5px solid var(--bd);border-radius:10px;overflow:hidden;transition:border-color .2s}
+.simp-input:focus-within{border-color:var(--blue)}
+.simp-pre{padding:0 10px;font-size:14px;color:var(--ts);pointer-events:none}
+.simp-suf{padding:0 10px;font-size:14px;color:var(--ts)}
+.simp-input input{flex:1;background:transparent;border:none;outline:none;font-size:17px;font-weight:600;color:var(--n);padding:11px 0;-webkit-appearance:none;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;min-width:0}
+.dp-presets-simp{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.dp-btn{padding:7px 11px;border-radius:8px;border:1.5px solid var(--bd);background:transparent;font-size:12px;font-weight:700;color:var(--tm);cursor:pointer;transition:all .15s;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.dp-btn.on{border-color:var(--n);background:var(--n);color:#fff}
+.dp-disp-simp{font-size:11px;color:var(--ts);margin-top:5px}
+.credit-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}
+.cr-btn{padding:8px 4px;border-radius:8px;border:1.5px solid var(--bd);background:transparent;font-size:11px;font-weight:700;color:var(--tm);cursor:pointer;text-align:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.cr-btn.on{border-color:var(--g);background:var(--gl);color:var(--n)}
+.rate-src-note{font-size:10px;color:var(--ts);margin-top:5px}
+.adj-toggle{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;cursor:pointer;font-size:12px;font-weight:600;color:var(--ts);border-top:1px solid var(--bd)}
+.adj-body{display:none;padding:0 16px 14px;border-top:1px solid var(--bd)}
+.adj-body.on{display:block}
+.adj-row{display:flex;gap:10px;margin-top:10px}
+.adj-col{flex:1}
+.adj-col-lbl{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ts);margin-bottom:5px}
+.opt-card{background:var(--w);margin:8px 16px 0;border-radius:14px;overflow:hidden;border:1.5px solid var(--bd);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.opt-card.feat{border-color:var(--g);box-shadow:0 2px 8px rgba(212,175,127,.25)}
+.opt-badge{display:inline-flex;align-items:center;background:var(--n);color:#fff;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:0 0 8px 0}
+.opt-badge.feat{background:var(--g);color:var(--n)}
+.opt-title{font-size:15px;font-weight:700;color:var(--n);padding:8px 14px 6px}
+.opt-piti-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ts);padding:0 14px;margin-bottom:3px}
+.opt-piti-amt{font-family:Georgia,serif;font-size:36px;font-weight:400;color:var(--n);padding:0 14px;line-height:1}
+.opt-piti-sub{font-size:10px;color:var(--ts);padding:3px 14px 4px}
+.opt-note{font-size:10px;color:var(--ts);padding:0 14px 8px;font-style:italic}
+.opt-bottom{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-top:1px solid var(--bd);background:#FAFBFC}
+.opt-rate-lbl{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ts);margin-bottom:2px}
+.opt-rate-val{font-size:14px;font-weight:700;color:var(--tm)}
+.opt-ctc{text-align:right}
+.opt-ctc-lbl{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ts);margin-bottom:2px}
+.opt-ctc-val{font-size:16px;font-weight:700;color:var(--n)}
+.comm-simp-row{display:flex;gap:10px}
+.comm-simp-col{flex:1}
+.comm-simp-lbl{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ts);margin-bottom:5px}
+.comm-simp-note{font-size:11px;color:var(--ts);margin-top:4px}
+.assump-note{text-align:center;font-size:10px;color:var(--ts);padding:4px 16px;font-style:italic}
 </style></head><body><div class="app">
 <div class="hdr">
 <div class="hdr-inner">
@@ -247,7 +291,7 @@ tr:nth-child(even) td{background:#F8FAFC}
 <div class="fb-banner-txt" id="fb-banner-txt"></div>
 </div>
 <div class="pnl on" id="p-home"><div class="home">
-<div class="home-sub" style="font-size:11px;color:#B0B8C4;font-weight:400;margin-bottom:10px;padding-top:4px">V. 32</div>
+<div class="home-sub" style="font-size:11px;color:#B0B8C4;font-weight:400;margin-bottom:10px;padding-top:4px">V. 33</div>
 <div class="grid">
 <div class="tile" onclick="goScreen('maint')"><span class="tile-icon">✅</span><div class="tile-name">Maintenance Tracker</div><div class="tile-desc">Stay on top of your home</div></div>
 <div class="tile" onclick="openExt('https://carlcooper.exprealty.com/index.php?showagency=1&rtype=grid')"><span class="tile-icon">🔍</span><div class="tile-name">Search Homes</div><div class="tile-desc">Browse available listings</div></div>
@@ -324,57 +368,63 @@ tr:nth-child(even) td{background:#F8FAFC}
 </div>
 <div class="pnl" id="p-buyer">
 <div class="back-btn" onclick="goHome()"><span>&#8592;</span> Back to Home</div>
-<div class="saved-hdr"><h3>Saved Buyer Estimates</h3></div>
+<div class="slbl">Saved Buyer Estimates</div>
 <div class="saved-list" id="buyer-saved-list"><div class="saved-empty">No saved estimates yet. Run a calculation and save it below.</div></div>
-<div class="slbl">Your Details</div>
-<div class="card"><div class="fld"><label>Your Name <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--ts)">(optional)</span></label><input type="text" id="b-name" placeholder="First and Last Name"></div><div class="fld"><label>Property Address <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--ts)">(optional)</span></label><input type="text" id="b-addr" placeholder="123 Main St, City, TX 76086"></div></div>
-<div class="slbl">Loan Details</div>
-<div class="card"><div class="fld"><label>Purchase Price</label><div class="iw pl"><span class="pre">$</span><input type="number" id="b-price" value="400000" inputmode="numeric" oninput="onPrice()"></div><input type="range" id="b-price-sl" min="50000" max="2000000" step="5000" value="400000" oninput="onPriceSl()"><div class="sl-row"><span>$50K</span><span>$2M</span></div></div><div class="fld"><label>Down Payment</label><div class="iw pr"><input type="number" id="b-dn" value="20" min="0" max="100" step="0.5" inputmode="decimal" oninput="onDn()"><span class="suf">%</span></div><input type="range" id="b-dn-sl" min="0" max="100" step="0.5" value="20" oninput="onDnSl()"><div class="sl-row"><span>0%</span><span>100%</span></div><div class="dn-info">Down: <b id="dn-d">$80,000</b> &nbsp; Loan: <b id="ln-d">$320,000</b></div></div><div class="fld"><label>Loan Type</label><select id="b-lt" onchange="onLT()"><option value="conv">Conventional</option><option value="fha">FHA</option><option value="va">VA Loan</option><option value="usda">USDA Rural</option></select></div><div class="fld"><label>Interest Rate</label><div class="iw pr"><input type="number" id="b-rate" value="6.75" step="0.125" inputmode="decimal" oninput="onRate()"><span class="suf">%</span></div><input type="range" id="b-rate-sl" min="1" max="20" step="0.125" value="6.75" oninput="onRateSl()"><div class="sl-row"><span>1%</span><span>20%</span></div></div><div class="fld"><label>Loan Term</label><select id="b-term"><option value="30">30-Year Fixed</option><option value="20">20-Year Fixed</option><option value="15">15-Year Fixed</option><option value="10">10-Year Fixed</option></select></div></div>
-<div class="mi-box" id="mi-box"></div>
-<div id="mi-crd" style="display:none"><div class="slbl" id="mi-lbl">Mortgage Insurance</div><div class="card"><div class="fld" id="mi-up-row" style="display:none"><label id="mi-up-lbl">Upfront Fee</label><div class="iw pl"><span class="pre">$</span><input type="number" id="b-mi-up" value="0" inputmode="numeric" oninput="reCalc()"></div><div class="hint" id="mi-up-hint"></div></div><div class="fld"><label id="mi-mo-lbl">Monthly MI</label><div class="iw pl"><span class="pre">$</span><input type="number" id="b-mi-mo" value="0" inputmode="numeric"></div><div class="hint" id="mi-mo-hint"></div></div></div></div>
-<div class="slbl" style="margin-top:4px">Monthly Escrow</div>
-<div class="card"><div class="fld"><label>Monthly Property Tax <span id="tax-badge" style="font-size:9px;color:var(--g);font-weight:600;text-transform:none;letter-spacing:0"></span></label><div class="iw pl"><span class="pre">$</span><input type="number" id="b-tax" value="350" inputmode="numeric"></div><div class="hint">Enter monthly amount or use the lookup button below.</div></div><div class="fld"><label>Homeowners Insurance</label><div class="tog"><button type="button" id="ins-mo-btn" class="tog-btn on" onclick="setInsMode('mo')">Monthly</button><button type="button" id="ins-yr-btn" class="tog-btn" onclick="setInsMode('yr')">Annual</button></div><div class="iw pl"><span class="pre">$</span><input type="number" id="b-ins" value="120" inputmode="numeric" oninput="onInsChange()"></div><div class="hint" id="ins-hint">Monthly premium amount</div></div><div class="fld"><label>Monthly HOA <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--ts)">(if applicable)</span></label><div class="iw pl"><span class="pre">$</span><input type="number" id="b-hoa" value="0" inputmode="numeric"></div></div></div>
-<button class="btn-out" onclick="taxLookup()">Look Up Tax Rate for This Address</button>
-<div class="msg" id="tax-msg"></div>
-<button class="btn-calc" onclick="bCalc()">Calculate My Estimate</button>
-<div id="b-res" style="display:none">
-<div class="hero"><div class="hero-lbl">Estimated Monthly Payment</div><div class="hero-amt" id="b-tot">$0</div><div class="hero-note" id="b-note">Principal + Interest + Tax + Insurance</div></div>
-<div class="sgrid"><div class="sbox"><div class="sbox-lbl">P&amp;I Payment</div><div class="sbox-val" id="r-pi">--</div></div><div class="sbox"><div class="sbox-lbl">Loan Amount</div><div class="sbox-val" id="r-bl">--</div></div><div class="sbox"><div class="sbox-lbl" id="r-mi-lbl">MI / PMI</div><div class="sbox-val" id="r-mi">--</div></div><div class="sbox"><div class="sbox-lbl">Total Interest</div><div class="sbox-val" id="r-ti">--</div></div></div>
-<div class="tw"><div class="tw-hdr"><h3>Loan Summary</h3></div><div class="row"><span class="rl">House Price</span><span class="rv" id="ls-price">--</span></div><div class="row"><span class="rl">Down Payment</span><span class="rv" id="ls-dn">--</span></div><div class="row"><span class="rl" id="ls-bl-lbl">Loan Amount</span><span class="rv" id="ls-bl">--</span></div><div class="row" id="ls-up-row" style="display:none"><span class="rl" id="ls-up-lbl">Upfront Fee</span><span class="rv" id="ls-up">--</span></div><div class="row" id="ls-tl-row" style="display:none"><span class="rl" style="font-weight:700">Total Loan</span><span class="rv big" id="ls-tl">--</span></div></div>
-<div class="tw"><div class="tw-hdr"><h3>Monthly Payment Breakdown</h3></div><div class="row"><span class="rl">Principal &amp; Interest</span><span class="rv" id="m-pi">--</span></div><div class="row"><span class="rl">Homeowners Insurance</span><span class="rv" id="m-ins">--</span></div><div class="row"><span class="rl">Property Tax</span><span class="rv" id="m-tax">--</span></div><div class="row" id="m-mi-row" style="display:none"><span class="rl" id="m-mi-lbl">MIP / PMI</span><span class="rv" id="m-mi">--</span></div><div class="row" id="m-hoa-row" style="display:none"><span class="rl">HOA</span><span class="rv" id="m-hoa">--</span></div><div class="trow"><span class="trow-lbl">Total Monthly Payment</span><span class="trow-val" id="m-tot">--</span></div></div>
-<div class="tw"><div class="tw-hdr"><h3>Prepaid Costs</h3></div><div class="row"><span class="rl">Homeowners Insurance<small id="p-ins-lbl">14 months</small></span><input class="ed" id="p-ins-mo" type="number" value="14" min="1" max="24" style="width:50px;margin-right:6px" oninput="reCalc()"><span class="rv" id="p-ins">--</span></div><div class="row"><span class="rl">Property Tax Escrow<small id="p-tax-lbl">3 months</small></span><input class="ed" id="p-tax-mo" type="number" value="3" min="1" max="12" style="width:50px;margin-right:6px" oninput="reCalc()"><span class="rv" id="p-tax">--</span></div><div class="row"><span class="rl">Prepaid Interest (15 days)</span><span class="rv" id="p-int">--</span></div><div class="trow"><span class="trow-lbl">Total Prepaids</span><span class="trow-val" id="p-tot">--</span></div></div>
-<div class="tw"><div class="tw-hdr"><h3>Estimated Closing Costs</h3></div><div class="tw-sec">Title &amp; Escrow</div><div class="row"><span class="rl">Lender Title Policy</span><input class="ed" id="c-lt" type="number" value="100" inputmode="numeric" oninput="reCalc()"></div><div class="row"><span class="rl">T-19 Endorsement</span><input class="ed" id="c-t19" type="number" value="100" inputmode="numeric" oninput="reCalc()"></div><div class="row"><span class="rl">Survey Cover Endorsement</span><input class="ed" id="c-tsc" type="number" value="116" inputmode="numeric" oninput="reCalc()"></div><div class="row"><span class="rl">T-17 Endorsement</span><input class="ed" id="c-t17" type="number" value="25" inputmode="numeric" oninput="reCalc()"></div><div class="row"><span class="rl">T-36 Endorsement</span><input class="ed" id="c-t36" type="number" value="25" inputmode="numeric" oninput="reCalc()"></div><div class="row"><span class="rl">T-30 Endorsement</span><input class="ed" id="c-t30" type="number" value="25" inputmode="numeric" oninput="reCalc()"></div><div class="row"><span class="rl">Escrow Fee</span><input class="ed" id="c-ef" type="number" value="425" inputmode="numeric" oninput="reCalc()"></div><div class="row"><span class="rl">Courier / UPS / FedEx</span><input class="ed" id="c-cr" type="number" value="25" inputmode="numeric" oninput="reCalc()"></div><div class="tw-sec">Lender Fees</div><div class="row"><span class="rl">Origination Fee<small>1% of loan</small></span><input class="ed" id="c-or" type="number" inputmode="numeric" oninput="reCalc()"></div><div class="tw-sec">Other Fees</div><div class="row"><span class="rl">Recording Fee</span><input class="ed" id="c-rf" type="number" value="116" inputmode="numeric" oninput="reCalc()"></div><div class="row"><span class="rl">E-Recording Fee</span><input class="ed" id="c-erf" type="number" value="11" inputmode="numeric" oninput="reCalc()"></div><div class="tw-sec">Credits</div><div class="row"><span class="rl">Seller Concession<small>Enter as positive number</small></span><input class="ed" id="c-sc" type="number" value="0" inputmode="numeric" oninput="reCalc()"></div><div class="trow"><span class="trow-lbl">Total Closing Costs</span><span class="trow-val" id="c-tot">--</span></div></div>
-<div class="tw"><div class="tw-hdr"><h3>Cash to Close Summary</h3></div><div class="row"><span class="rl">Closing Costs</span><span class="rv" id="btc-fc">--</span></div><div class="row"><span class="rl">Prepaid Costs</span><span class="rv" id="btc-pc">--</span></div><div class="row"><span class="rl" style="font-weight:700">Total Closing Costs</span><span class="rv big" id="btc-cc">--</span></div><div class="row"><span class="rl">Down Payment</span><span class="rv" id="btc-dn">--</span></div><div class="trow"><span class="trow-lbl">Estimated Cash to Close</span><span class="trow-val" id="btc-tot">--</span></div></div>
-<button class="amort-btn" onclick="togAmort()">View Amortization Schedule <span id="am-arr" style="display:inline-block;transition:transform .3s;font-size:10px">&#9660;</span></button>
-<div class="amort-body" id="amort"><table><thead><tr><th>Year</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead><tbody id="amort-tb"></tbody></table></div>
-<button class="save-est-btn" onclick="saveEstimate('buyer')">&#128190; Save This Estimate</button>
+<div class="slbl" style="margin-top:4px">Buyer Estimate</div>
+<div class="card">
+<div class="simp-field"><div class="simp-label">&#127991; Home Price</div><div class="simp-input"><span class="simp-pre">$</span><input type="number" id="b-price" value="400000" inputmode="numeric" oninput="onBPrice()"></div></div>
+<div class="simp-field"><div class="simp-label">&#128176; Down Payment</div><div class="dp-presets-simp" id="b-dp-btns"><button class="dp-btn" onclick="setBDP(3.5)">3.5%</button><button class="dp-btn" onclick="setBDP(5)">5%</button><button class="dp-btn" onclick="setBDP(10)">10%</button><button class="dp-btn on" onclick="setBDP(20)">20%</button></div><div class="simp-input" style="margin-top:8px"><span class="simp-pre">$</span><input type="number" id="b-dp" value="80000" inputmode="numeric" oninput="onBDPChange()"></div><div class="dp-disp-simp" id="b-dp-disp">20% down &bull; Loan: $320,000</div></div>
+<div class="simp-field"><div class="simp-label">&#128200; Interest Rate <span id="b-rate-badge"></span></div><div class="simp-input"><input type="number" id="b-rate" value="6.66" step="0.125" inputmode="decimal"><span class="simp-suf">%</span></div><div class="rate-src-note">Freddie Mac avg 6.66% (Aug 27, 2026) &bull; Actual rate set by your lender</div></div>
+<div class="simp-field"><div class="simp-label">&#127873; Seller Credit <span>(optional)</span></div><div class="credit-grid" id="b-cr-btns"><button class="cr-btn on" onclick="setBCredit(0)">None</button><button class="cr-btn" onclick="setBCredit(4000)">$4,000</button><button class="cr-btn" onclick="setBCredit(8000)">$8,000</button><button class="cr-btn" onclick="setBCredit(12000)">$12,000</button><button class="cr-btn" onclick="setBCredit(16000)">$16,000</button><button class="cr-btn" onclick="setBCredit(-1)">Custom</button></div><div class="simp-input" id="b-cr-custom" style="display:none;margin-top:8px"><span class="simp-pre">$</span><input type="number" id="b-credit" value="0" inputmode="numeric"></div></div>
+<div class="adj-toggle" onclick="togBAdj()"><span>&#9881; Adjust Assumptions</span><span id="b-adj-arr">&#9660;</span></div>
+<div class="adj-body" id="b-adj-body"><div class="adj-row"><div class="adj-col"><div class="adj-col-lbl">Tax Rate %</div><div class="simp-input"><input type="number" id="b-tax-rate" value="2.0" step="0.1" inputmode="decimal"><span class="simp-suf">%</span></div></div><div class="adj-col"><div class="adj-col-lbl">Insurance Rate %</div><div class="simp-input"><input type="number" id="b-ins-rate" value="0.55" step="0.05" inputmode="decimal"><span class="simp-suf">%</span></div></div></div><p style="font-size:10px;color:var(--ts);margin-top:8px;line-height:1.6">Default: 2% tax &bull; 0.55% insurance &bull; Verify with your county</p></div>
+</div>
+<button class="btn-calc" onclick="calcBuyerSimp()">See My Options</button>
+<div id="b-simp-res" style="display:none">
+<div style="text-align:center;padding:16px 16px 4px;font-family:Georgia,serif;font-size:20px;font-weight:400;color:var(--n)">3 Purchase Options</div>
+<div style="text-align:center;font-size:12px;color:var(--ts);padding:0 24px 4px">Compare payments and cash to close.</div>
+<div class="assump-note" id="b-assump-note"></div>
+<div id="b-simp-opts"></div>
+<button class="amort-btn" style="margin-top:10px" onclick="togBSimpDet()"><span id="b-simp-det-arr" style="display:inline-block;transition:transform .3s;font-size:10px">&#9660;</span> Full Breakdown</button>
+<div class="amort-body" id="b-simp-det"></div>
+<button class="save-est-btn" onclick="saveSimpEstimate('buyer')">&#128190; Save This Estimate</button>
 <div class="save-msg" id="buyer-save-msg"></div>
-<button style="display:block;width:calc(100% - 32px);margin:14px 16px 0;background:var(--n);color:var(--g);border:2px solid var(--g);border-radius:10px;padding:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer" onclick="generatePDF('buyer')">&#128196; Download PDF Estimate</button><div class="share-bar"><button class="btn-share btn-share-res" onclick="shareResults('buyer')">&#128203; Share My Results</button><button class="btn-share btn-share-app" onclick="shareApp()">&#128279; Share This App</button></div>
-<div class="cta"><div class="cta-top"><p class="cta-p">These are estimates. For exact numbers I can connect you with the right lender and title company.</p><div class="cta-name">Carl Cooper</div><a href="tel:8174547267" class="cta-phone">817-454-7267</a></div><div class="cta-disc">Estimates only. Actual costs will vary. Broker commissions are not set by law and are fully negotiable.</div></div>
-</div></div>
+<button style="display:block;width:calc(100% - 32px);margin:10px 16px 0;background:var(--n);color:var(--g);border:2px solid var(--g);border-radius:10px;padding:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer" onclick="generatePDF('buyer')">&#128196; Download PDF Estimate</button>
+<div class="share-bar"><button class="btn-share btn-share-res" onclick="shareSimpResults('buyer')">&#128203; Share My Results</button><button class="btn-share btn-share-app" onclick="shareApp()">&#128279; Share This App</button></div>
+<div class="msg" style="display:block;margin:10px 16px 0;padding:11px 14px;border-radius:8px;background:#FEF9EE;border:1px solid var(--g);font-size:10px;color:var(--tm);line-height:1.7;font-style:italic"><b style="display:block;margin-bottom:3px;color:var(--n)">ESTIMATE ONLY</b>These figures are for informational purposes only. Actual costs vary based on lender, title company, and circumstances. Origination fee shown is an estimate - actual lender fees vary. Always consult your lender and title company for exact figures. Broker commissions are not set by law and are fully negotiable.</div>
+<div class="cta"><div class="cta-top"><p class="cta-p">Ready to get exact numbers? Talk to a trusted lender.</p><div class="cta-name">Carl Cooper</div><a href="tel:8174547267" class="cta-phone">817-454-7267</a></div><div class="cta-disc">Estimates only. Actual costs will vary.</div></div>
+</div>
+</div>
 <div class="pnl" id="p-seller">
 <div class="back-btn" onclick="goHome()"><span>&#8592;</span> Back to Home</div>
-<div class="saved-hdr"><h3>Saved Seller Estimates</h3></div>
+<div class="slbl">Saved Seller Estimates</div>
 <div class="saved-list" id="seller-saved-list"><div class="saved-empty">No saved estimates yet. Run a calculation and save it below.</div></div>
-<div class="slbl">Your Details</div>
-<div class="card"><div class="fld"><label>Your Name <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--ts)">(optional)</span></label><input type="text" id="s-name" placeholder="First and Last Name"></div><div class="fld"><label>Property Address <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--ts)">(optional)</span></label><input type="text" id="s-addr" placeholder="123 Main St, City, TX 76086"></div></div>
-<div class="slbl">Property Details</div>
-<div class="card"><div class="fld"><label>Sale Price</label><div class="iw pl"><span class="pre">$</span><input type="number" id="s-price" value="450000" inputmode="numeric" oninput="document.getElementById('s-sl').value=Math.min(this.value,2000000)"></div><input type="range" id="s-sl" min="50000" max="2000000" step="5000" value="450000" oninput="document.getElementById('s-price').value=this.value"><div class="sl-row"><span>$50K</span><span>$2M</span></div></div><div class="fld"><label>Remaining Mortgage Balance</label><div class="iw pl"><span class="pre">$</span><input type="number" id="s-bal" value="280000" inputmode="numeric"></div><div class="hint">Your current loan payoff amount</div></div><div class="fld"><label>Seller's Mortgage Rate (%)</label><div class="iw pr"><input type="number" id="s-rate" value="4.0" step="0.125" inputmode="decimal"><span class="suf">%</span></div><div class="hint">Used to calculate prorated interest at closing</div></div><div class="fld"><label>Estimated Closing Date</label><input type="date" id="s-close-date"><div class="hint">Used to calculate prorated taxes and interest</div></div></div>
-<div class="slbl">Commission</div>
-<div class="card"><div class="fld"><label>Buyer Agent Commission (%)</label><div class="iw pr"><input type="number" id="s-bc" value="3" step="0.1" inputmode="decimal"><span class="suf">%</span></div></div><div class="fld"><label>Listing Agent Commission (%)</label><div class="iw pr"><input type="number" id="s-lc" value="3" step="0.1" inputmode="decimal"><span class="suf">%</span></div></div></div>
-<div class="slbl">Seller Closing Costs</div>
-<div class="card"><div class="tw-sec" style="border-top:none;border-radius:0;margin:0;padding:5px 16px 4px">Title Fees</div><div class="fld"><label>Owner's Title Policy<small style="display:block;font-size:10px;color:var(--ts);margin-top:2px;font-weight:400;text-transform:none;letter-spacing:0">Leave 0 to auto-estimate at ~0.6% of sale price</small></label><div class="iw pl"><span class="pre">$</span><input type="number" id="s-tp" value="0" inputmode="numeric"></div></div><div class="fld"><label>Escrow Fee</label><div class="iw pl"><span class="pre">$</span><input type="number" id="s-ef" value="425" inputmode="numeric"></div></div><div class="fld"><label>Attorney Doc Prep</label><div class="iw pl"><span class="pre">$</span><input type="number" id="s-adp" value="225" inputmode="numeric"></div></div><div class="fld"><label>Tax Certificate</label><div class="iw pl"><span class="pre">$</span><input type="number" id="s-tc" value="65" inputmode="numeric"></div></div><div class="fld"><label>Courier / UPS / FedEx</label><div class="iw pl"><span class="pre">$</span><input type="number" id="s-cr" value="25" inputmode="numeric"></div></div><div class="tw-sec" style="border-radius:0;margin:0;padding:5px 16px 4px">Other Fees</div><div class="fld"><label>Recording Fee</label><div class="iw pl"><span class="pre">$</span><input type="number" id="s-rf" value="30" inputmode="numeric"></div></div><div class="fld"><label>Home Warranty <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--ts)">(if offering)</span></label><div class="iw pl"><span class="pre">$</span><input type="number" id="s-hw" value="0" inputmode="numeric"></div></div><div class="fld"><label>Seller Concession to Buyer</label><div class="iw pl"><span class="pre">$</span><input type="number" id="s-sc" value="0" inputmode="numeric"></div></div><div class="fld"><label>Repairs / Miscellaneous</label><div class="iw pl"><span class="pre">$</span><input type="number" id="s-misc" value="0" inputmode="numeric"></div></div></div>
-<div class="slbl">Annual Property Tax</div>
-<div class="card"><div class="fld"><label>Annual Property Tax Bill</label><div class="iw pl"><span class="pre">$</span><input type="number" id="s-atax" value="8400" inputmode="numeric"></div><div class="hint">Used to prorate taxes from Jan 1 to closing date.</div></div></div>
-<button class="btn-calc" onclick="sCalc()">Calculate My Net Proceeds</button>
-<div id="s-res" style="display:none">
-<div class="hero" style="margin-top:14px"><div class="hero-lbl">Estimated Net Proceeds</div><div class="hero-amt" id="s-net-hero">$0</div><div class="hero-note" id="s-net-note">What you take home after all costs</div></div>
-<div class="tw" style="margin-top:10px"><div class="tw-hdr"><h3>Seller Net Sheet</h3></div><div class="tw-sec">Sale</div><div class="row"><span class="rl">Sale Price</span><span class="rv" id="sr-price">--</span></div><div class="tw-sec">Deductions</div><div class="row"><span class="rl">Mortgage Payoff</span><span class="rv neg" id="sr-bal">--</span></div><div class="row"><span class="rl">Buyer Agent Commission</span><span class="rv neg" id="sr-bc">--</span></div><div class="row"><span class="rl">Listing Agent Commission</span><span class="rv neg" id="sr-lc">--</span></div><div class="tw-sec">Title Fees</div><div class="row"><span class="rl">Owner's Title Policy</span><span class="rv neg" id="sr-tp">--</span></div><div class="row"><span class="rl">Escrow Fee</span><span class="rv neg" id="sr-ef">--</span></div><div class="row"><span class="rl">Attorney Doc Prep</span><span class="rv neg" id="sr-adp">--</span></div><div class="row"><span class="rl">Tax Certificate</span><span class="rv neg" id="sr-tc">--</span></div><div class="row"><span class="rl">Courier / UPS / FedEx</span><span class="rv neg" id="sr-cr">--</span></div><div class="tw-sec">Other Fees</div><div class="row"><span class="rl">Recording Fee</span><span class="rv neg" id="sr-rf">--</span></div><div class="row" id="sr-hw-row"><span class="rl">Home Warranty</span><span class="rv neg" id="sr-hw">--</span></div><div class="row" id="sr-sc-row"><span class="rl">Seller Concession</span><span class="rv neg" id="sr-sc">--</span></div><div class="row" id="sr-misc-row"><span class="rl">Repairs / Misc</span><span class="rv neg" id="sr-misc">--</span></div><div class="tw-sec">Date-Based Costs</div><div class="row"><span class="rl">Prorated Interest<small id="sr-int-note"></small></span><span class="rv neg" id="sr-int">--</span></div><div class="row"><span class="rl">Prorated Property Tax<small id="sr-tax-note"></small></span><span class="rv neg" id="sr-ptax">--</span></div><div class="row"><span class="rl" style="font-weight:700">Total Closing Costs</span><span class="rv bigneg" id="sr-total-costs">--</span></div><div class="trow"><span class="trow-lbl">Estimated Net Proceeds</span><span class="trow-val" id="sr-net">--</span></div></div>
-<button class="save-est-btn" onclick="saveEstimate('seller')">&#128190; Save This Estimate</button>
+<div class="slbl" style="margin-top:4px">Seller Estimate</div>
+<div class="card">
+<div class="simp-field"><div class="simp-label">&#127991; Sale Price</div><div class="simp-input"><span class="simp-pre">$</span><input type="number" id="s-price" value="450000" inputmode="numeric" oninput="onSPriceSimp()"></div></div>
+<div class="simp-field"><div class="simp-label">&#127968; Mortgage Balance</div><div class="simp-input"><span class="simp-pre">$</span><input type="number" id="s-bal" value="280000" inputmode="numeric"></div></div>
+<div class="simp-field"><div class="simp-label">&#128200; Commission</div><div class="comm-simp-row"><div class="comm-simp-col"><div class="comm-simp-lbl">Listing Agent</div><div class="simp-input"><input type="number" id="s-lc-pct" value="3" step="0.1" inputmode="decimal" oninput="onSCommPct('lc')"><span class="simp-suf">%</span></div><div class="simp-input" style="margin-top:5px"><span class="simp-pre">$</span><input type="number" id="s-lc-amt" value="13500" inputmode="numeric" oninput="onSCommAmt('lc')"></div><div class="comm-simp-note" id="s-lc-note">3% of sale price</div></div><div class="comm-simp-col"><div class="comm-simp-lbl">Buyer's Agent</div><div class="simp-input"><input type="number" id="s-bc-pct" value="3" step="0.1" inputmode="decimal" oninput="onSCommPct('bc')"><span class="simp-suf">%</span></div><div class="simp-input" style="margin-top:5px"><span class="simp-pre">$</span><input type="number" id="s-bc-amt" value="13500" inputmode="numeric" oninput="onSCommAmt('bc')"></div><div class="comm-simp-note" id="s-bc-note">3% of sale price</div></div></div></div>
+<div class="simp-field" style="border-bottom:none"><div class="simp-label">&#128197; Closing Date <span>(for prorated costs)</span></div><input type="date" id="s-close-date" style="width:100%;background:#F8FAFC;border:1.5px solid var(--bd);border-radius:10px;padding:11px 12px;font-size:16px;font-weight:600;color:var(--n);outline:none;-webkit-appearance:none"></div>
+</div>
+<button class="btn-calc" onclick="calcSellerSimp()">Calculate My Net</button>
+<div id="s-simp-res" style="display:none">
+<div class="hero" style="margin-top:14px"><div class="hero-lbl">Estimated Net Proceeds</div><div class="hero-amt" id="s-simp-net">$0</div><div class="hero-note" id="s-simp-note">What you take home after all costs</div></div>
+<div class="sgrid">
+<div class="sbox"><div class="sbox-lbl">Sale Price</div><div class="sbox-val" id="s-sb-price">--</div></div>
+<div class="sbox"><div class="sbox-lbl">Total Costs</div><div class="sbox-val" id="s-sb-costs">--</div></div>
+<div class="sbox"><div class="sbox-lbl">Commission</div><div class="sbox-val" id="s-sb-comm">--</div></div>
+<div class="sbox"><div class="sbox-lbl">Mortgage Payoff</div><div class="sbox-val" id="s-sb-bal">--</div></div>
+</div>
+<button class="amort-btn" style="margin-top:10px" onclick="togSSimpDet()"><span id="s-simp-det-arr" style="display:inline-block;transition:transform .3s;font-size:10px">&#9660;</span> Full Breakdown</button>
+<div class="amort-body" id="s-simp-det"></div>
+<button class="save-est-btn" onclick="saveSimpEstimate('seller')">&#128190; Save This Estimate</button>
 <div class="save-msg" id="seller-save-msg"></div>
-<button style="display:block;width:calc(100% - 32px);margin:14px 16px 0;background:var(--n);color:var(--g);border:2px solid var(--g);border-radius:10px;padding:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer" onclick="generatePDF('seller')">&#128196; Download PDF Estimate</button><div class="share-bar"><button class="btn-share btn-share-res" onclick="shareResults('seller')">&#128203; Share My Results</button><button class="btn-share btn-share-app" onclick="shareApp()">&#128279; Share This App</button></div>
-<div class="cta"><div class="cta-top"><p class="cta-p">Thinking about selling? I would love to walk you through the process.</p><div class="cta-name">Carl Cooper</div><a href="tel:8174547267" class="cta-phone">817-454-7267</a></div><div class="cta-disc">Estimates only. Actual costs will vary. Broker commissions are not set by law and are fully negotiable.</div></div>
-</div></div>
+<button style="display:block;width:calc(100% - 32px);margin:10px 16px 0;background:var(--n);color:var(--g);border:2px solid var(--g);border-radius:10px;padding:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer" onclick="generatePDF('seller')">&#128196; Download PDF Estimate</button>
+<div class="share-bar"><button class="btn-share btn-share-res" onclick="shareSimpResults('seller')">&#128203; Share My Results</button><button class="btn-share btn-share-app" onclick="shareApp()">&#128279; Share This App</button></div>
+<div class="msg" style="display:block;margin:10px 16px 0;padding:11px 14px;border-radius:8px;background:#FEF9EE;border:1px solid var(--g);font-size:10px;color:var(--tm);line-height:1.7;font-style:italic"><b style="display:block;margin-bottom:3px;color:var(--n)">ESTIMATE ONLY</b>These figures are for informational purposes only. Actual costs will vary. Prorated taxes and interest are estimates. Broker commissions are not set by law and are fully negotiable. Always consult your agent and title company for exact figures.</div>
+<div class="cta"><div class="cta-top"><p class="cta-p">Thinking about selling? Let's talk strategy.</p><div class="cta-name">Carl Cooper</div><a href="tel:8174547267" class="cta-phone">817-454-7267</a></div><div class="cta-disc">Estimates only. Actual costs will vary.</div></div>
+</div>
+</div>
 <div class="pnl" id="p-maint">
 <div class="back-btn" onclick="goHome()"><span>&#8592;</span> Back to Home</div>
 <div id="mt-pin-screen" style="display:none">
@@ -1116,10 +1166,334 @@ function detectFBBrowser(){
   }
   banner.classList.add('show');
 }
+
+function titlePolicy(amt){
+  if(amt<=100000)return 832;
+  if(amt<=1000000)return 832+Math.round((amt-100000)/1000*3.50);
+  return 832+3150+Math.round((amt-1000000)/1000*2.50);
+}
+var bSimpDetOpen=false,sSimpDetOpen=false,bAdjOpen=false,bCurDP=20,bCurCredit=0;
+function setBDP(pct){
+  bCurDP=pct;
+  var price=parseFloat(el("b-price").value)||0;
+  var dp=Math.round(price*pct/100);
+  el("b-dp").value=dp;
+  updBDPDisp(price,dp);
+  var btns=el("b-dp-btns").querySelectorAll(".dp-btn");
+  var pcts=[3.5,5,10,20];
+  for(var i=0;i<btns.length;i++)btns[i].className=pcts[i]===pct?"dp-btn on":"dp-btn";
+}
+function onBPrice(){
+  var price=parseFloat(el("b-price").value)||0;
+  var dp=Math.round(price*bCurDP/100);
+  el("b-dp").value=dp;
+  updBDPDisp(price,dp);
+}
+function onBDPChange(){
+  var price=parseFloat(el("b-price").value)||0;
+  var dp=parseFloat(el("b-dp").value)||0;
+  if(price>0)bCurDP=Math.round(dp/price*1000)/10;
+  updBDPDisp(price,dp);
+  var btns=el("b-dp-btns").querySelectorAll(".dp-btn");
+  for(var i=0;i<btns.length;i++)btns[i].className="dp-btn";
+}
+function updBDPDisp(price,dp){
+  var loan=Math.max(price-dp,0);
+  var pct=price>0?Math.round(dp/price*1000)/10:0;
+  sv("b-dp-disp",pct+"% down • Loan: "+ff(loan));
+}
+function setBCredit(amt){
+  var btns=el("b-cr-btns").querySelectorAll(".cr-btn");
+  for(var i=0;i<btns.length;i++)btns[i].className="cr-btn";
+  if(amt===-1){
+    el("b-cr-custom").style.display="";
+    btns[5].className="cr-btn on";
+    bCurCredit=parseFloat(el("b-credit").value)||0;
+  }else{
+    el("b-cr-custom").style.display="none";
+    el("b-credit").value=amt;
+    bCurCredit=amt;
+    var amts=[0,4000,8000,12000,16000];
+    for(var i=0;i<amts.length;i++){if(amts[i]===amt)btns[i].className="cr-btn on";}
+  }
+}
+function togBAdj(){bAdjOpen=!bAdjOpen;el("b-adj-body").className=bAdjOpen?"adj-body on":"adj-body";el("b-adj-arr").style.transform=bAdjOpen?"rotate(180deg)":"";}
+function bPiCalc(loan,rate){var mr=rate/100/12,n=360;if(mr===0)return loan/n;return loan*(mr*Math.pow(1+mr,n))/(Math.pow(1+mr,n)-1);}
+function calcBOpt(price,dp,rate,taxRate,insRate,credit){
+  var loan=Math.max(price-dp,0);
+  var pi=bPiCalc(loan,rate);
+  var taxMo=Math.round(price*taxRate/100/12);
+  var insMo=Math.round(price*insRate/100/12);
+  var piti=pi+taxMo+insMo;
+  var lenderTitle=titlePolicy(loan);
+  var survey=800;
+  var origFee=Math.round(loan*0.01);
+  var escrow=425;
+  var misc=Math.round(100+25+25+25+25+116+11);
+  var closingCosts=lenderTitle+survey+origFee+escrow+misc;
+  var insPrep=Math.round(insMo*14);
+  var taxPrep=Math.round(taxMo*3);
+  var intPrep=Math.round(loan*(rate/100/12)/30*15);
+  var prepaids=insPrep+taxPrep+intPrep;
+  var ctc=dp+closingCosts+prepaids-credit;
+  return {loan:loan,pi:pi,taxMo:taxMo,insMo:insMo,piti:piti,lenderTitle:lenderTitle,survey:survey,origFee:origFee,escrow:escrow,misc:misc,closingCosts:closingCosts,insPrep:insPrep,taxPrep:taxPrep,intPrep:intPrep,prepaids:prepaids,ctc:ctc,credit:credit};
+}
+function calcBuyerSimp(){
+  try{
+    var price=parseFloat(el("b-price").value)||0;
+    var dp=parseFloat(el("b-dp").value)||0;
+    var rate=parseFloat(el("b-rate").value)||6.66;
+    var taxRate=parseFloat(el("b-tax-rate").value)||2.0;
+    var insRate=parseFloat(el("b-ins-rate").value)||0.55;
+    var credit=parseFloat(el("b-credit").value)||bCurCredit||0;
+    if(price<10000){alert("Please enter a valid home price.");return;}
+    var r1=Math.max(rate-0.75,4.5);
+    var r2=rate;
+    var r3=rate+0.375;
+    var pointsCost=Math.round(0.75/0.25*0.01*(price-dp));
+    var lenderCredit=Math.round(0.375/0.25*0.01*(price-dp));
+    var o1=calcBOpt(price,dp,r1,taxRate,insRate,credit-pointsCost);
+    var o2=calcBOpt(price,dp,r2,taxRate,insRate,credit);
+    var o3=calcBOpt(price,dp,r3,taxRate,insRate,credit+lenderCredit);
+    var opts=[
+      {lbl:"OPTION 1",title:"Lower Your Payment",o:o1,rate:r1,feat:false,note:"Est. "+ff(pointsCost)+" in points to buy rate down"},
+      {lbl:"OPTION 2",title:"Balanced",o:o2,rate:r2,feat:true,note:"Par rate - no points, no credit"},
+      {lbl:"OPTION 3",title:"Move In For Less",o:o3,rate:r3,feat:false,note:"Est. "+ff(lenderCredit)+" lender credit applied"}
+    ];
+    var h="";
+    for(var i=0;i<opts.length;i++){
+      var opt=opts[i];
+      var featCls=opt.feat?" feat":"";
+      h+='<div class="opt-card'+featCls+'">';
+      h+='<div class="opt-badge'+featCls+'">'+opt.lbl+'</div>';
+      h+='<div class="opt-title">'+opt.title+'</div>';
+      h+='<div class="opt-piti-lbl">EST. MONTHLY PITI</div>';
+      h+='<div class="opt-piti-amt">'+ff(opt.o.piti)+'</div>';
+      h+='<div class="opt-piti-sub">Principal, Interest, Tax & Insurance</div>';
+      h+='<div class="opt-note">'+opt.note+'</div>';
+      h+='<div class="opt-bottom"><div><div class="opt-rate-lbl">RATE</div><div class="opt-rate-val">'+opt.rate.toFixed(3)+'%</div></div><div class="opt-ctc"><div class="opt-ctc-lbl">CASH TO CLOSE</div><div class="opt-ctc-val">'+ff(opt.o.ctc)+'</div></div></div>';
+      h+='</div>';
+    }
+    el("b-simp-opts").innerHTML=h;
+    sv("b-assump-note","Est. "+taxRate+"% tax • "+insRate+"% insurance • 30-year fixed");
+    var d=o2;
+    var det='<div class="tw-hdr"><h3>Full Breakdown - Balanced Option</h3></div>';
+    det+='<div class="tw-sec">Loan</div>';
+    det+='<div class="row"><span class="rl">Home Price</span><span class="rv">'+ff(price)+'</span></div>';
+    det+='<div class="row"><span class="rl">Down Payment</span><span class="rv neg">-'+ff(dp)+'</span></div>';
+    det+='<div class="row"><span class="rl">Loan Amount</span><span class="rv big">'+ff(d.loan)+'</span></div>';
+    det+='<div class="tw-sec">Monthly Payment</div>';
+    det+='<div class="row"><span class="rl">Principal & Interest</span><span class="rv">'+ff(d.pi)+'/mo</span></div>';
+    det+='<div class="row"><span class="rl">Property Tax (est. '+taxRate+'%)</span><span class="rv">'+ff(d.taxMo)+'/mo</span></div>';
+    det+='<div class="row"><span class="rl">Homeowners Insurance (est. '+insRate+'%)</span><span class="rv">'+ff(d.insMo)+'/mo</span></div>';
+    det+='<div class="tw-sec">Closing Costs</div>';
+    det+='<div class="row"><span class="rl">Lender Title Policy (TX promulgated)</span><span class="rv">'+ff(d.lenderTitle)+'</span></div>';
+    det+='<div class="row"><span class="rl">Survey</span><span class="rv">'+ff(d.survey)+'</span></div>';
+    det+='<div class="row"><span class="rl">Origination Fee (est. 1% - varies by lender)</span><span class="rv">'+ff(d.origFee)+'</span></div>';
+    det+='<div class="row"><span class="rl">Escrow Fee</span><span class="rv">'+ff(d.escrow)+'</span></div>';
+    det+='<div class="row"><span class="rl">Misc Fees (recording, endorsements, courier)</span><span class="rv">'+ff(d.misc)+'</span></div>';
+    det+='<div class="tw-sec">Prepaids & Escrows</div>';
+    det+='<div class="row"><span class="rl">Insurance (14 months)</span><span class="rv">'+ff(d.insPrep)+'</span></div>';
+    det+='<div class="row"><span class="rl">Property Tax Escrow (3 months)</span><span class="rv">'+ff(d.taxPrep)+'</span></div>';
+    det+='<div class="row"><span class="rl">Prepaid Interest (15 days)</span><span class="rv">'+ff(d.intPrep)+'</span></div>';
+    if(credit>0)det+='<div class="row"><span class="rl">Seller Credit</span><span class="rv neg">-'+ff(credit)+'</span></div>';
+    det+='<div class="trow"><span class="trow-lbl">Cash to Close</span><span class="trow-val">'+ff(d.ctc)+'</span></div>';
+    el("b-simp-det").innerHTML=det;
+    el("b-simp-res").style.display="block";
+    setTimeout(function(){el("b-simp-res").scrollIntoView({behavior:"smooth",block:"start"});},100);
+    notifyBuyerSimp(price,dp,rate,d.ctc,d.piti);
+  }catch(e){alert("Error: "+e.message);}
+}
+function togBSimpDet(){bSimpDetOpen=!bSimpDetOpen;el("b-simp-det").className=bSimpDetOpen?"amort-body on":"amort-body";el("b-simp-det-arr").style.transform=bSimpDetOpen?"rotate(180deg)":"";}
+function onSPriceSimp(){
+  var price=parseFloat(el("s-price").value)||0;
+  var lc=parseFloat(el("s-lc-pct").value)||3;
+  var bc=parseFloat(el("s-bc-pct").value)||3;
+  el("s-lc-amt").value=Math.round(price*lc/100);
+  el("s-bc-amt").value=Math.round(price*bc/100);
+  sv("s-lc-note",lc+"% of sale price");
+  sv("s-bc-note",bc+"% of sale price");
+}
+function onSCommPct(w){
+  var price=parseFloat(el("s-price").value)||0;
+  var pct=parseFloat(el("s-"+w+"-pct").value)||0;
+  el("s-"+w+"-amt").value=Math.round(price*pct/100);
+  sv("s-"+w+"-note",pct+"% of sale price");
+}
+function onSCommAmt(w){
+  var price=parseFloat(el("s-price").value)||0;
+  var amt=parseFloat(el("s-"+w+"-amt").value)||0;
+  var pct=price>0?Math.round(amt/price*10000)/100:0;
+  el("s-"+w+"-pct").value=pct;
+  sv("s-"+w+"-note",pct+"% of sale price");
+}
+function calcSellerSimp(){
+  try{
+    var price=parseFloat(el("s-price").value)||0;
+    var bal=parseFloat(el("s-bal").value)||0;
+    var lcAmt=parseFloat(el("s-lc-amt").value)||Math.round(price*0.03);
+    var bcAmt=parseFloat(el("s-bc-amt").value)||Math.round(price*0.03);
+    var lcPct=parseFloat(el("s-lc-pct").value)||3;
+    var bcPct=parseFloat(el("s-bc-pct").value)||3;
+    if(price<10000){alert("Please enter a valid sale price.");return;}
+    var commAmt=lcAmt+bcAmt;
+    var ownerTitle=titlePolicy(price);
+    var escrow=425,docPrep=225,misc=65+25+30;
+    var proratedTax=0,proratedInt=0,taxNote="",intNote="";
+    var closeDate=el("s-close-date").value;
+    if(closeDate){
+      var cd=new Date(closeDate+"T12:00:00");
+      var day=cd.getDate();
+      var annTax=Math.round(price*0.02);
+      proratedInt=Math.round(bal*0.07/365*day);
+      var jan1=new Date(cd.getFullYear(),0,1);
+      var daysIn=Math.floor((cd-jan1)/(1000*60*60*24))+1;
+      proratedTax=Math.round(annTax/365*daysIn);
+      taxNote=daysIn+" days at 2%";
+      intNote="Days 1-"+day+" at est. 7%";
+    }
+    var totalCosts=commAmt+ownerTitle+escrow+docPrep+misc+proratedTax+proratedInt;
+    var net=price-bal-totalCosts;
+    var netEl=el("s-simp-net");
+    netEl.textContent=net<0?"-"+ff(Math.abs(net)):ff(net);
+    netEl.style.color=net<0?"#F87171":"var(--g)";
+    sv("s-simp-note",net<0?"Seller owes at closing":"What you take home after all costs");
+    sv("s-sb-price",ff(price));
+    sv("s-sb-costs",ff(totalCosts));
+    sv("s-sb-comm",ff(commAmt));
+    sv("s-sb-bal",ff(bal));
+    var det='<div class="tw-hdr"><h3>Full Cost Breakdown</h3></div>';
+    det+='<div class="tw-sec">Commissions</div>';
+    det+='<div class="row"><span class="rl">Listing Agent ('+lcPct+'%)</span><span class="rv neg">-'+ff(lcAmt)+'</span></div>';
+    det+='<div class="row"><span class="rl">Buyer\'s Agent ('+bcPct+'%)</span><span class="rv neg">-'+ff(bcAmt)+'</span></div>';
+    det+='<div class="tw-sec">Title Fees</div>';
+    det+='<div class="row"><span class="rl">Owner\'s Title Policy (TX promulgated)</span><span class="rv neg">-'+ff(ownerTitle)+'</span></div>';
+    det+='<div class="row"><span class="rl">Escrow Fee</span><span class="rv neg">-'+ff(escrow)+'</span></div>';
+    det+='<div class="row"><span class="rl">Attorney Doc Prep</span><span class="rv neg">-'+ff(docPrep)+'</span></div>';
+    det+='<div class="row"><span class="rl">Misc Fees (tax cert, courier, recording)</span><span class="rv neg">-'+ff(misc)+'</span></div>';
+    if(proratedTax>0)det+='<div class="row"><span class="rl">Prorated Tax ('+taxNote+')</span><span class="rv neg">-'+ff(proratedTax)+'</span></div>';
+    if(proratedInt>0)det+='<div class="row"><span class="rl">Prorated Interest ('+intNote+')</span><span class="rv neg">-'+ff(proratedInt)+'</span></div>';
+    det+='<div class="tw-sec">Payoff</div>';
+    det+='<div class="row"><span class="rl">Mortgage Balance</span><span class="rv neg">-'+ff(bal)+'</span></div>';
+    det+='<div class="trow"><span class="trow-lbl">Net Proceeds</span><span class="trow-val'+(net<0?' neg':'')+'">'+(net<0?'-':'')+ff(Math.abs(net))+'</span></div>';
+    el("s-simp-det").innerHTML=det;
+    el("s-simp-res").style.display="block";
+    setTimeout(function(){el("s-simp-res").scrollIntoView({behavior:"smooth",block:"start"});},100);
+    notifySellerSimp(price,bal,net);
+  }catch(e){alert("Error: "+e.message);}
+}
+function togSSimpDet(){sSimpDetOpen=!sSimpDetOpen;el("s-simp-det").className=sSimpDetOpen?"amort-body on":"amort-body";el("s-simp-det-arr").style.transform=sSimpDetOpen?"rotate(180deg)":"";}
+function notifyBuyerSimp(price,dp,rate,ctc,piti){
+  try{
+    var d={};
+    d["_subject"]="New Buyer Estimate - "+ff(price);
+    d["Type"]="Buyer Estimate (Simplified)";
+    d["Purchase Price"]=ff(price);
+    d["Down Payment"]=ff(dp)+" ("+Math.round(dp/price*100)+"%)";
+    d["Rate"]=rate+"%";
+    d["Monthly PITI"]=ff(piti)+"/mo";
+    d["Cash to Close"]=ff(ctc);
+    var x=new XMLHttpRequest();x.open("POST",FS,true);x.setRequestHeader("Content-Type","application/json");x.setRequestHeader("Accept","application/json");x.send(JSON.stringify(d));
+  }catch(e){}
+}
+function notifySellerSimp(price,bal,net){
+  try{
+    var d={};
+    d["_subject"]="New Seller Estimate - "+ff(price);
+    d["Type"]="Seller Estimate (Simplified)";
+    d["Sale Price"]=ff(price);
+    d["Mortgage Balance"]=ff(bal);
+    d["Estimated Net"]=ff(net);
+    var x=new XMLHttpRequest();x.open("POST",FS,true);x.setRequestHeader("Content-Type","application/json");x.setRequestHeader("Accept","application/json");x.send(JSON.stringify(d));
+  }catch(e){}
+}
+function saveSimpEstimate(type){
+  var nameEl=type==="buyer"?el("b-name"):el("s-name");
+  var addrEl=type==="buyer"?el("b-addr"):el("s-addr");
+  var msgEl=el(type+"-save-msg");
+  var name=nameEl?(nameEl.value||"").trim():"";
+  var addr=addrEl?(addrEl.value||"").trim():"";
+  if(!name||!addr){
+    var n=prompt("Your name (required to save):");
+    var a=prompt("Property address (required to save):");
+    if(!n||!a){msgEl.className="save-msg err";msgEl.textContent="Name and address required to save.";return;}
+    name=n;addr=a;
+  }
+  msgEl.className="save-msg loading";msgEl.textContent="Saving...";
+  var payload={device_id:DEVICE_ID,type:type,name:name,address:addr};
+  if(type==="buyer"){
+    var price=parseFloat(el("b-price").value)||0;
+    var dp=parseFloat(el("b-dp").value)||0;
+    var rate=parseFloat(el("b-rate").value)||6.66;
+    var taxRate=parseFloat(el("b-tax-rate").value)||2.0;
+    var insRate=parseFloat(el("b-ins-rate").value)||0.55;
+    var d2=calcBOpt(price,dp,rate,taxRate,insRate,0);
+    payload.price=price;payload.dp=dp;payload.bl=d2.loan;payload.rate=rate;
+    payload.piti=d2.piti;payload.cashToClose=ff(d2.ctc);
+  }else{
+    payload.price=parseFloat(el("s-price").value)||0;
+    payload.bal=parseFloat(el("s-bal").value)||0;
+    payload.bc=parseFloat(el("s-bc-pct").value)||3;
+    payload.lc=parseFloat(el("s-lc-pct").value)||3;
+    payload.closeDate=el("s-close-date").value||"";
+    payload.netProceeds=el("s-simp-net")?el("s-simp-net").textContent:"--";
+  }
+  apiCall("/api/save-estimate",payload,function(err,res){
+    if(err||!res||!res.success){msgEl.className="save-msg err";msgEl.textContent="Could not save. Please try again.";return;}
+    msgEl.className="save-msg ok";msgEl.textContent="Saved! Find it at the top of this screen.";
+    loadSavedEstimates(type);
+    notifySave(type,name,addr,payload);
+  });
+}
+function shareSimpResults(type){
+  var lines=[];
+  lines.push("HOME ESTIMATE");
+  lines.push("Carl Cooper | Lynch Legacy Realty Group | 817-454-7267");
+  lines.push(APP_URL);
+  lines.push("---");
+  if(type==="buyer"){
+    var price=parseFloat(el("b-price").value)||0;
+    var dp=parseFloat(el("b-dp").value)||0;
+    var rate=parseFloat(el("b-rate").value)||6.66;
+    lines.push("Purchase Price: "+ff(price));
+    lines.push("Down Payment: "+ff(dp)+" ("+Math.round(dp/price*100)+"%)");
+    lines.push("Rate: "+rate+"%");
+    lines.push("");
+    var opts=el("b-simp-opts");
+    if(opts)lines.push(opts.innerText||"");
+  }else{
+    lines.push("Sale Price: "+ff(parseFloat(el("s-price").value)||0));
+    lines.push("Mortgage Balance: "+ff(parseFloat(el("s-bal").value)||0));
+    lines.push("Net Proceeds: "+(el("s-simp-net")?el("s-simp-net").textContent:"--"));
+  }
+  lines.push("");
+  lines.push("Estimates only. Verify with agent and title company.");
+  var txt=lines.join("\n");
+  if(navigator.share){navigator.share({title:"Home Estimate - Carl Cooper",text:txt}).catch(function(){});}
+  else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("Copied!");});}
+  else{prompt("Copy:",txt);}
+}
+function fetchCurrentRate(){
+  try{
+    var x=new XMLHttpRequest();
+    x.open("GET","/api/get-rate",true);
+    x.onload=function(){
+      try{
+        var d=JSON.parse(x.responseText);
+        if(d.success&&d.rate){
+          el("b-rate").value=parseFloat(d.rate).toFixed(3);
+          sv("b-rate-badge","(current: "+parseFloat(d.rate).toFixed(2)+"%)");
+        }
+      }catch(e){}
+    };
+    x.send();
+  }catch(e){}
+}
+
 function notifyLender(lender,action){try{var d={};d["_subject"]="Pre-Approval "+action+" - "+lender;d["Type"]="Pre-Approval "+action;d["Lender"]=lender;d["Action"]=action;d["Note"]="A client tapped "+action+" for "+lender+" on The Home Hub.";var x=new XMLHttpRequest();x.open("POST",FS,true);x.setRequestHeader("Content-Type","application/json");x.setRequestHeader("Accept","application/json");x.send(JSON.stringify(d));}catch(e){}}
 function notify(type){try{var d={};if(type==="buyer"&&bD){var bname=bD.name;d["_subject"]="New Buyer Estimate"+(bname?" - "+bname:"")+(bD.addr?" - "+bD.addr:"");d["Type"]="Buyer";if(bname)d["Name"]=bname;d["Address"]=bD.addr||"Not entered";d["Purchase Price"]=ff(bD.price);d["Down Payment"]=bD.dp+"% ("+ff(bD.dn)+")";d["Loan Type"]=el("b-lt").options[el("b-lt").selectedIndex].text;d["Loan Amount"]=ff(bD.bl);d["Rate"]=bD.rate+"% / "+bD.term+" yr";d["Monthly Payment"]=ff(bD.piti)+"/mo";d["Monthly Tax"]=ff(bD.tax);d["Monthly Insurance"]=ff(bD.ins);if(bD.miMo>0)d["Monthly MI"]=ff(bD.miMo);if(bD.hoa>0)d["Monthly HOA"]=ff(bD.hoa);var ids2=["c-lt","c-t19","c-tsc","c-t17","c-t36","c-t30","c-ef","c-cr","c-or","c-rf","c-erf"],fc2=0;for(var i=0;i<ids2.length;i++)fc2+=gv(ids2[i]);var im2=gv("p-ins-mo")||14,tm2=gv("p-tax-mo")||3,pre2=bD.ins*im2+bD.tax*tm2+bD.int15,cr2=gv("c-sc");d["Closing Costs"]=ff(fc2-cr2);d["Prepaids"]=ff(pre2);d["Cash to Close"]=ff(bD.dn+fc2-cr2+pre2);}else if(type==="seller"){var sname=(el("s-name").value||"").trim();var sa=el("s-addr").value||"Not entered";d["_subject"]="New Seller Estimate"+(sname?" - "+sname:"")+(sa!=="Not entered"?" - "+sa:"");d["Type"]="Seller";if(sname)d["Name"]=sname;d["Address"]=sa;d["Sale Price"]=ff(gv("s-price"));d["Mortgage Balance"]=ff(gv("s-bal"));d["Buyer Commission"]=gv("s-bc")+"%";d["Listing Commission"]=gv("s-lc")+"%";d["Closing Date"]=el("s-close-date").value||"Not entered";d["Net Proceeds"]=el("sr-net").textContent;}var x=new XMLHttpRequest();x.open("POST",FS,true);x.setRequestHeader("Content-Type","application/json");x.setRequestHeader("Accept","application/json");x.send(JSON.stringify(d));}catch(e){}}
 function shareApp(){var url=APP_URL,text="Check out The Home Hub from Carl Cooper:\n"+url;if(navigator.share){navigator.share({title:"The Home Hub - Carl Cooper",text:"Check out this free real estate tool:",url:url}).catch(function(){});}else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){alert("Link copied! Paste into a text or email to share.");}).catch(function(){prompt("Copy this link:",url);});}else{prompt("Copy this link:",url);}}
 function shareResults(type){var lines=[];lines.push("CLOSING COST ESTIMATE");lines.push("Provided by Carl Cooper | 817-454-7267");lines.push(APP_URL);lines.push("-----------------------------------");if(type==="buyer"&&bD){if(bD.name)lines.push("Prepared for: "+bD.name);if(bD.addr)lines.push("Property: "+bD.addr);lines.push("Purchase Price: "+ff(bD.price));lines.push("Down Payment: "+bD.dp+"% ("+ff(bD.dn)+")");lines.push("Loan: "+ff(bD.bl)+" at "+bD.rate+"% / "+bD.term+" years");lines.push("");lines.push("MONTHLY PAYMENT: "+ff(bD.piti)+"/mo");lines.push("  P+I: "+ff(bD.pi));lines.push("  Tax: "+ff(bD.tax));lines.push("  Insurance: "+ff(bD.ins));if(bD.miMo>0)lines.push("  MI/PMI: "+ff(bD.miMo));if(bD.hoa>0)lines.push("  HOA: "+ff(bD.hoa));lines.push("");lines.push("CASH TO CLOSE: "+(el("btc-tot").textContent||"--"));lines.push("  Closing Costs: "+(el("btc-fc").textContent||"--"));lines.push("  Prepaids: "+(el("btc-pc").textContent||"--"));lines.push("  Down Payment: "+ff(bD.dn));}else if(type==="seller"){var sn=el("s-name").value;var sa2=el("s-addr").value;if(sn)lines.push("Prepared for: "+sn);if(sa2)lines.push("Property: "+sa2);lines.push("Sale Price: "+ff(gv("s-price")));lines.push("Mortgage Payoff: "+ff(gv("s-bal")));var cd2=el("s-close-date").value;if(cd2)lines.push("Closing Date: "+cd2);lines.push("");lines.push("NET PROCEEDS: "+(el("sr-net").textContent||"--"));lines.push("  Total Costs: "+(el("sr-total-costs").textContent||"--"));}lines.push("");lines.push("Estimates only. Verify with agent and title company.");lines.push("Run your own estimate: "+APP_URL);var txt=lines.join("\n");if(navigator.share){navigator.share({title:"My Estimate - The Home Hub",text:txt}).catch(function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("Copied!");});}});}else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("Copied!");}).catch(function(){prompt("Copy:",txt);});}else{prompt("Copy:",txt);}}
 detectFBBrowser();
-(function(){var d=new Date();d.setDate(d.getDate()+30);var m=d.getMonth()+1,day=d.getDate(),y=d.getFullYear();var str=y+"-"+(m<10?"0"+m:m)+"-"+(day<10?"0"+day:day);el("s-close-date").value=str;}());
+(function(){var d=new Date();d.setDate(d.getDate()+30);var m=d.getMonth()+1,day=d.getDate(),y=d.getFullYear();var str=y+"-"+(m<10?"0"+m:m)+"-"+(day<10?"0"+day:day);if(el("s-close-date"))el("s-close-date").value=str;fetchCurrentRate();}());
 </script></body></html>
