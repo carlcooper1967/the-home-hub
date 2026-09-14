@@ -291,7 +291,7 @@ tr:nth-child(even) td{background:#F8FAFC}
 <div class="fb-banner-txt" id="fb-banner-txt"></div>
 </div>
 <div class="pnl on" id="p-home"><div class="home">
-<div class="home-sub" style="font-size:11px;color:#B0B8C4;font-weight:400;margin-bottom:10px;padding-top:4px">V. 33</div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding-top:4px"><span style="font-size:11px;color:#B0B8C4;font-weight:400">V. 34</span><span style="font-size:11px;color:#B0B8C4;font-weight:400" id="mt-last-sync"></span></div>
 <div class="grid">
 <div class="tile" onclick="goScreen('maint')"><span class="tile-icon">✅</span><div class="tile-name">Maintenance Tracker</div><div class="tile-desc">Stay on top of your home</div></div>
 <div class="tile" onclick="openExt('https://carlcooper.exprealty.com/index.php?showagency=1&rtype=grid')"><span class="tile-icon">🔍</span><div class="tile-name">Search Homes</div><div class="tile-desc">Browse available listings</div></div>
@@ -389,8 +389,8 @@ tr:nth-child(even) td{background:#F8FAFC}
 <div class="amort-body" id="b-simp-det"></div>
 <button class="save-est-btn" onclick="saveSimpEstimate('buyer')">&#128190; Save This Estimate</button>
 <div class="save-msg" id="buyer-save-msg"></div>
-<button style="display:block;width:calc(100% - 32px);margin:10px 16px 0;background:var(--n);color:var(--g);border:2px solid var(--g);border-radius:10px;padding:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer" onclick="generatePDF('buyer')">&#128196; Download PDF Estimate</button>
-<div class="share-bar"><button class="btn-share btn-share-res" onclick="shareSimpResults('buyer')">&#128203; Share My Results</button><button class="btn-share btn-share-app" onclick="shareApp()">&#128279; Share This App</button></div>
+
+<div class="share-bar"><button class="btn-share btn-share-res" onclick="shareResultsPDF('buyer')">&#128279; Share My Results</button><button class="btn-share btn-share-app" onclick="shareApp()">&#128279; Share This App</button></div>
 <div class="msg" style="display:block;margin:10px 16px 0;padding:11px 14px;border-radius:8px;background:#FEF9EE;border:1px solid var(--g);font-size:10px;color:var(--tm);line-height:1.7;font-style:italic"><b style="display:block;margin-bottom:3px;color:var(--n)">ESTIMATE ONLY</b>These figures are for informational purposes only. Actual costs vary based on lender, title company, and circumstances. Origination fee shown is an estimate - actual lender fees vary. Always consult your lender and title company for exact figures. Broker commissions are not set by law and are fully negotiable.</div>
 <div class="cta"><div class="cta-top"><p class="cta-p">Ready to get exact numbers? Talk to a trusted lender.</p><div class="cta-name">Carl Cooper</div><a href="tel:8174547267" class="cta-phone">817-454-7267</a></div><div class="cta-disc">Estimates only. Actual costs will vary.</div></div>
 </div>
@@ -419,8 +419,8 @@ tr:nth-child(even) td{background:#F8FAFC}
 <div class="amort-body" id="s-simp-det"></div>
 <button class="save-est-btn" onclick="saveSimpEstimate('seller')">&#128190; Save This Estimate</button>
 <div class="save-msg" id="seller-save-msg"></div>
-<button style="display:block;width:calc(100% - 32px);margin:10px 16px 0;background:var(--n);color:var(--g);border:2px solid var(--g);border-radius:10px;padding:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer" onclick="generatePDF('seller')">&#128196; Download PDF Estimate</button>
-<div class="share-bar"><button class="btn-share btn-share-res" onclick="shareSimpResults('seller')">&#128203; Share My Results</button><button class="btn-share btn-share-app" onclick="shareApp()">&#128279; Share This App</button></div>
+
+<div class="share-bar"><button class="btn-share btn-share-res" onclick="shareResultsPDF('seller')">&#128279; Share My Results</button><button class="btn-share btn-share-app" onclick="shareApp()">&#128279; Share This App</button></div>
 <div class="msg" style="display:block;margin:10px 16px 0;padding:11px 14px;border-radius:8px;background:#FEF9EE;border:1px solid var(--g);font-size:10px;color:var(--tm);line-height:1.7;font-style:italic"><b style="display:block;margin-bottom:3px;color:var(--n)">ESTIMATE ONLY</b>These figures are for informational purposes only. Actual costs will vary. Prorated taxes and interest are estimates. Broker commissions are not set by law and are fully negotiable. Always consult your agent and title company for exact figures.</div>
 <div class="cta"><div class="cta-top"><p class="cta-p">Thinking about selling? Let's talk strategy.</p><div class="cta-name">Carl Cooper</div><a href="tel:8174547267" class="cta-phone">817-454-7267</a></div><div class="cta-disc">Estimates only. Actual costs will vary.</div></div>
 </div>
@@ -609,6 +609,13 @@ function mtSyncToCloud(){
   apiCall("/api/save-mt-data",payload,function(err,res){
     if(dot)dot.className=err?"mt-sync-dot error":"mt-sync-dot";
     if(txt)txt.textContent=err?"Sync error":"Synced";
+    if(!err){
+      var now=new Date();
+      var syncStr="Synced "+(now.getMonth()+1)+"/"+now.getDate()+" "+now.getHours()+":"+(now.getMinutes()<10?"0":"")+now.getMinutes();
+      var syncEl=document.getElementById("mt-last-sync");
+      if(syncEl)syncEl.textContent=syncStr;
+      try{localStorage.setItem("hh_last_sync",syncStr);}catch(e){}
+    }
   });
 }
 function mtSave(){try{window.storage.set(MT_KEY,JSON.stringify(mtData),false);}catch(e){try{localStorage.setItem(MT_KEY,JSON.stringify(mtData));}catch(e2){}}mtSyncToCloud();}
@@ -649,9 +656,39 @@ function mtGoTo(idx,animate){if(idx<0)idx=0;if(idx>11)idx=11;mtCurIdx=idx;var sl
 function mtSwipe(dir){mtGoTo(mtCurIdx+dir,true);}
 function mtToggle(month,idx){var k=mtTaskKey(mtCurYear,month,idx);if(mtData.tasks[k]){delete mtData.tasks[k];}else{var now=new Date();var ds=(now.getMonth()+1)+"/"+now.getDate()+"/"+now.getFullYear();mtData.tasks[k]={date:ds};}mtSave();mtBuildSlides();mtGoTo(mtCurIdx,false);}
 (function(){var startX=0,dragging=false;var wrap=null;function getWrap(){if(!wrap)wrap=document.getElementById("mt-slider-wrap");return wrap;}document.addEventListener("touchstart",function(e){if(!getWrap()||!getWrap().contains(e.target))return;startX=e.touches[0].clientX;dragging=true;},{passive:true});document.addEventListener("touchend",function(e){if(!dragging)return;dragging=false;var dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>50){if(dx<0)mtSwipe(1);else mtSwipe(-1);}},{passive:true});})();
-function mtExport(){var byYear={};var keys=Object.keys(mtData.tasks);for(var ki=0;ki<keys.length;ki++){var k=keys[ki];var parts=k.split("_");if(parts.length!==3)continue;var y=parts[0],m=parseInt(parts[1]),idx=parseInt(parts[2]);var taskList=TASKS[String(m)]||[];if(idx>=taskList.length)continue;if(!byYear[y])byYear[y]=[];byYear[y].push({m:m,idx:idx,text:taskList[idx],date:mtData.tasks[k].date});}var years=Object.keys(byYear).sort();if(years.length===0){alert("No completed tasks to export yet. Start checking off tasks to build your record.");return;}var SEP1="================================================";var SEP2="------------------------------------------------";var COL=42;function padRow(task,date){var t=task.length>COL?task.substring(0,COL-2)+"..":task;var spaces=COL-t.length;if(spaces<2)spaces=2;var pad="";for(var i=0;i<spaces;i++)pad+=" ";return"  \u2713 "+t+pad+date;}var lines=[];lines.push(SEP1);lines.push("  HOME MAINTENANCE RECORD");lines.push(SEP1);lines.push("");lines.push("  "+(mtData.addr||"Property Address"));lines.push("");lines.push("  Carl Cooper");lines.push("  Broker Associate | TREC# 0772439");lines.push("  Lynch Legacy Realty Group");lines.push("  Brokered by eXp Realty");lines.push("  Driven. Trusted. Results That Move You!");lines.push("  817-454-7267");lines.push("  carlcooper@lynchlegacyexp.com");lines.push("");lines.push(SEP1);for(var yi=0;yi<years.length;yi++){var yr=years[yi];lines.push("");lines.push("  "+yr);lines.push(SEP2);byYear[yr].sort(function(a,b){return a.m-b.m||a.idx-b.idx;});var curMonth=-1;for(var ti=0;ti<byYear[yr].length;ti++){var t=byYear[yr][ti];if(t.m!==curMonth){if(curMonth!==-1)lines.push("");lines.push("  "+MONTHS[t.m].toUpperCase());curMonth=t.m;}lines.push(padRow(t.text,t.date));}lines.push("");}lines.push(SEP1);lines.push("");lines.push("DISCLAIMER: This maintenance record was self-reported");lines.push("by the homeowner using The Home Hub provided by Carl");lines.push("Cooper, Lynch Legacy Realty Group. Carl Cooper and Lynch");lines.push("Legacy Realty Group make no warranty regarding the");lines.push("completeness or accuracy of this information. This record");lines.push("is for informational purposes only and does not constitute");lines.push("a home inspection or warranty of any kind. Always consult");lines.push("a licensed professional for home inspections and repairs.");lines.push("");lines.push("Generated: "+new Date().toLocaleDateString());var txt=lines.join("\n");notifyMT("export");if(navigator.share){navigator.share({title:"Home Maintenance Record - Carl Cooper",text:txt}).catch(function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("Copied! Paste into an email or document.");});}else{prompt("Copy your record:",txt);}});}else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("Copied! Paste into an email or document to share your maintenance record.");}).catch(function(){prompt("Copy:",txt);});}else{prompt("Copy:",txt);}}
+function mtExport(){var byYear={};var keys=Object.keys(mtData.tasks);for(var ki=0;ki<keys.length;ki++){var k=keys[ki];var parts=k.split("_");if(parts.length!==3)continue;var y=parts[0],m=parseInt(parts[1]),idx=parseInt(parts[2]);var taskList=TASKS[String(m)]||[];if(idx>=taskList.length)continue;if(!byYear[y])byYear[y]=[];byYear[y].push({m:m,idx:idx,text:taskList[idx],date:mtData.tasks[k].date});}var years=Object.keys(byYear).sort();if(years.length===0){alert("No completed tasks to export yet. Start checking off tasks to build your record.");return;}var SEP1="================================================";var SEP2="------------------------------------------------";var COL=42;function padRow(task,date){var t=task.length>COL?task.substring(0,COL-2)+"..":task;var spaces=COL-t.length;if(spaces<2)spaces=2;var pad="";for(var i=0;i<spaces;i++)pad+=" ";return"  \u2713 "+t+pad+date;}var lines=[];lines.push(SEP1);lines.push("  HOME MAINTENANCE RECORD");lines.push(SEP1);lines.push("");lines.push("  "+(mtData.addr||"Property Address"));lines.push("");lines.push("  Carl Cooper");lines.push("  Broker Associate | TREC# 0772439");lines.push("  Lynch Legacy Realty Group");lines.push("  Brokered by eXp Realty");lines.push("  Driven. Trusted. Results That Move You!");lines.push("  817-454-7267");lines.push("  carlcooper@lynchlegacyexp.com");lines.push("");lines.push(SEP1);for(var yi=0;yi<years.length;yi++){var yr=years[yi];lines.push("");lines.push("  "+yr);lines.push(SEP2);byYear[yr].sort(function(a,b){return a.m-b.m||a.idx-b.idx;});var curMonth=-1;for(var ti=0;ti<byYear[yr].length;ti++){var t=byYear[yr][ti];if(t.m!==curMonth){if(curMonth!==-1)lines.push("");lines.push("  "+MONTHS[t.m].toUpperCase());curMonth=t.m;}lines.push(padRow(t.text,t.date));}lines.push("");}lines.push(SEP1);lines.push("");lines.push("DISCLAIMER: This maintenance record was self-reported");lines.push("by the homeowner using The Home Hub provided by Carl");lines.push("Cooper, Lynch Legacy Realty Group. Carl Cooper and Lynch");lines.push("Legacy Realty Group make no warranty regarding the");lines.push("completeness or accuracy of this information. This record");lines.push("is for informational purposes only and does not constitute");lines.push("a home inspection or warranty of any kind. Always consult");lines.push("a licensed professional for home inspections and repairs.");lines.push("");lines.push("Generated: "+new Date().toLocaleDateString());var txt=lines.join("\n");notifyMT("export");
+  var email=prompt("Enter your email to receive a copy of your maintenance record (optional):");
+  if(email&&email.indexOf("@")>0){
+    try{
+      var ed={};
+      ed["_subject"]="Your Home Maintenance Record - "+mtData.addr;
+      ed["_replyto"]=email;
+      ed["Name"]=mtData.name||"Homeowner";
+      ed["Address"]=mtData.addr;
+      ed["Email"]=email;
+      ed["Record"]=txt;
+      ed["Note"]="Your home maintenance record from The Home Hub by Carl Cooper | 817-454-7267";
+      var xe=new XMLHttpRequest();
+      xe.open("POST",FS,true);
+      xe.setRequestHeader("Content-Type","application/json");
+      xe.setRequestHeader("Accept","application/json");
+      xe.send(JSON.stringify(ed));
+    }catch(e2){}
+  }if(navigator.share){navigator.share({title:"Home Maintenance Record - Carl Cooper",text:txt}).catch(function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("Copied! Paste into an email or document.");});}else{prompt("Copy your record:",txt);}});}else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("Copied! Paste into an email or document to share your maintenance record.");}).catch(function(){prompt("Copy:",txt);});}else{prompt("Copy:",txt);}}
 function notifyMT(type){try{var d={};if(type==="setup"){d["_subject"]="New Maintenance Tracker - "+mtData.addr;d["Type"]="Maintenance Tracker Setup";d["Name"]=mtData.name||"Not provided";d["Address"]=mtData.addr;}else if(type==="export"){var total=0,done=0;for(var m=0;m<12;m++){var tl=TASKS[String(m)]||[];for(var i=0;i<tl.length;i++){total++;if(mtData.tasks[mtTaskKey(new Date().getFullYear(),m,i)])done++;}}d["_subject"]="POTENTIAL SELLER LEAD - Maintenance Export - "+mtData.addr;d["Type"]="Maintenance Export - POTENTIAL SELLER LEAD";d["Name"]=mtData.name||"Not provided";d["Address"]=mtData.addr;d["Tasks Completed"]=done+" of "+total+" this year";d["Note"]="This homeowner exported their maintenance record - they may be preparing to sell.";}var x=new XMLHttpRequest();x.open("POST",FS,true);x.setRequestHeader("Content-Type","application/json");x.setRequestHeader("Accept","application/json");x.send(JSON.stringify(d));}catch(e){}}
 
+function shareResultsPDF(type){
+  try{
+    var script=document.createElement('script');
+    script.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    script.onload=function(){buildAndSharePDF(type);};
+    document.head.appendChild(script);
+  }catch(e){alert('Could not generate PDF. Please try again.');}
+}
+function buildAndSharePDF(type){
+  window._pdfShare=true;
+  buildPDF(type);
+}
 function generatePDF(type){
   try{
     // Load jsPDF
@@ -675,6 +712,14 @@ function buildPDF(type){
   doc.setFont('helvetica','bold');
   doc.text('ESTIMATE ONLY',W/2,H/2,{angle:45,align:'center'});
   doc.setGState(new doc.GState({opacity:1}));
+
+  // ── TOP DISCLAIMER ──
+  doc.setFillColor(255,248,225);
+  doc.rect(0,32,W,10,'F');
+  doc.setTextColor(100,60,0);
+  doc.setFontSize(8);
+  doc.setFont('helvetica','bold');
+  doc.text('ESTIMATE ONLY - FOR INFORMATIONAL PURPOSES ONLY. ACTUAL COSTS WILL VARY. NOT A COMMITMENT TO LEND.',W/2,38.5,{align:'center'});
 
   // ── HEADER BAR ──
   doc.setFillColor(navy[0],navy[1],navy[2]);
@@ -906,6 +951,20 @@ function buildPDF(type){
   doc.line(6,ry,W-6,ry);
   ry+=8;
 
+  // ── BOTTOM BOLD DISCLAIMER ──
+  doc.setFillColor(255,248,225);
+  doc.rect(6,ry,W-12,14,'F');
+  doc.setDrawColor(212,175,127);
+  doc.setLineWidth(0.5);
+  doc.rect(6,ry,W-12,14);
+  doc.setTextColor(100,60,0);
+  doc.setFontSize(7.5);
+  doc.setFont('helvetica','bold');
+  doc.text('ESTIMATE ONLY: These figures are for informational purposes only and are not a commitment to lend.',W/2,ry+5,{align:'center'});
+  doc.text('Actual costs vary. Always consult your lender and title company. Broker commissions are fully negotiable.',W/2,ry+10,{align:'center'});
+  doc.setTextColor(50,50,50);
+  ry+=18;
+
   // ── SIGNATURE LINES ──
   doc.setTextColor(navy[0],navy[1],navy[2]);
   doc.setFontSize(8);
@@ -969,7 +1028,22 @@ function buildPDF(type){
 
   // Save
   var filename=type==='seller'?'Seller_Net_Sheet_'+dateStr.replace(/\//g,'-')+'.pdf':'Buyer_Estimate_'+dateStr.replace(/\//g,'-')+'.pdf';
-  doc.save(filename);
+  if(window._pdfShare){
+    doc.output('blob',{filename:filename},function(blob){
+      if(blob){
+        var url=URL.createObjectURL(blob);
+        var a=document.createElement('a');
+        a.href=url;a.download=filename;
+        if(navigator.share&&navigator.canShare&&navigator.canShare({files:[new File([blob],filename,{type:'application/pdf'})]})){
+          navigator.share({files:[new File([blob],filename,{type:'application/pdf'})],title:'Home Estimate - Carl Cooper'}).catch(function(){a.click();});
+        }else{a.click();}
+        URL.revokeObjectURL(url);
+      }
+    });
+    window._pdfShare=false;
+  }else{
+    doc.save(filename);
+  }
 }
 
 function togLoan(id){
@@ -1495,5 +1569,6 @@ function notify(type){try{var d={};if(type==="buyer"&&bD){var bname=bD.name;d["_
 function shareApp(){var url=APP_URL,text="Check out The Home Hub from Carl Cooper:\n"+url;if(navigator.share){navigator.share({title:"The Home Hub - Carl Cooper",text:"Check out this free real estate tool:",url:url}).catch(function(){});}else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){alert("Link copied! Paste into a text or email to share.");}).catch(function(){prompt("Copy this link:",url);});}else{prompt("Copy this link:",url);}}
 function shareResults(type){var lines=[];lines.push("CLOSING COST ESTIMATE");lines.push("Provided by Carl Cooper | 817-454-7267");lines.push(APP_URL);lines.push("-----------------------------------");if(type==="buyer"&&bD){if(bD.name)lines.push("Prepared for: "+bD.name);if(bD.addr)lines.push("Property: "+bD.addr);lines.push("Purchase Price: "+ff(bD.price));lines.push("Down Payment: "+bD.dp+"% ("+ff(bD.dn)+")");lines.push("Loan: "+ff(bD.bl)+" at "+bD.rate+"% / "+bD.term+" years");lines.push("");lines.push("MONTHLY PAYMENT: "+ff(bD.piti)+"/mo");lines.push("  P+I: "+ff(bD.pi));lines.push("  Tax: "+ff(bD.tax));lines.push("  Insurance: "+ff(bD.ins));if(bD.miMo>0)lines.push("  MI/PMI: "+ff(bD.miMo));if(bD.hoa>0)lines.push("  HOA: "+ff(bD.hoa));lines.push("");lines.push("CASH TO CLOSE: "+(el("btc-tot").textContent||"--"));lines.push("  Closing Costs: "+(el("btc-fc").textContent||"--"));lines.push("  Prepaids: "+(el("btc-pc").textContent||"--"));lines.push("  Down Payment: "+ff(bD.dn));}else if(type==="seller"){var sn=el("s-name").value;var sa2=el("s-addr").value;if(sn)lines.push("Prepared for: "+sn);if(sa2)lines.push("Property: "+sa2);lines.push("Sale Price: "+ff(gv("s-price")));lines.push("Mortgage Payoff: "+ff(gv("s-bal")));var cd2=el("s-close-date").value;if(cd2)lines.push("Closing Date: "+cd2);lines.push("");lines.push("NET PROCEEDS: "+(el("sr-net").textContent||"--"));lines.push("  Total Costs: "+(el("sr-total-costs").textContent||"--"));}lines.push("");lines.push("Estimates only. Verify with agent and title company.");lines.push("Run your own estimate: "+APP_URL);var txt=lines.join("\n");if(navigator.share){navigator.share({title:"My Estimate - The Home Hub",text:txt}).catch(function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("Copied!");});}});}else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("Copied!");}).catch(function(){prompt("Copy:",txt);});}else{prompt("Copy:",txt);}}
 detectFBBrowser();
+try{var ls=localStorage.getItem("hh_last_sync");if(ls){var lsEl=document.getElementById("mt-last-sync");if(lsEl)lsEl.textContent=ls;}}catch(e){}
 (function(){var d=new Date();d.setDate(d.getDate()+30);var m=d.getMonth()+1,day=d.getDate(),y=d.getFullYear();var str=y+"-"+(m<10?"0"+m:m)+"-"+(day<10?"0"+day:day);if(el("s-close-date"))el("s-close-date").value=str;fetchCurrentRate();}());
 </script></body></html>
