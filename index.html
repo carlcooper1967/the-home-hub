@@ -215,6 +215,14 @@ tr:nth-child(even) td{background:#F8FAFC}
 .save-msg.ok{display:block;background:#F0FDF4;border:1px solid #86EFAC;color:#14532D}
 .save-msg.err{display:block;background:#FEF2F2;border:1px solid #FCA5A5;color:#7F1D1D}
 .save-msg.loading{display:block;background:#EFF6FF;border:1px solid #93C5FD;color:#1E3A5F}
+.ci-modal-ov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(13,27,42,.65);z-index:200;align-items:center;justify-content:center;padding:16px}
+.ci-modal-ov.on{display:flex}
+.ci-modal-card{background:var(--w);border-radius:14px;max-width:400px;width:100%;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.ci-modal-hdr{background:var(--n);color:#fff;font-family:Georgia,serif;font-size:19px;padding:20px 16px 4px;text-align:center}
+.ci-modal-sub{background:var(--n);color:#B8C2D0;font-size:11px;text-align:center;padding:0 16px 18px;line-height:1.4}
+.ci-modal-btns{display:flex;gap:10px;padding:14px 16px 16px}
+.ci-btn-cancel{flex:1;background:#FAFBFC;border:1.5px solid var(--bd);color:var(--tm);border-radius:8px;padding:13px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.ci-btn-continue{flex:2;background:var(--g);border:none;color:var(--n);border-radius:8px;padding:13px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
 
 .mt-pin-screen{padding:20px 16px}
 .mt-pin-title{font-family:Georgia,serif;font-size:20px;font-weight:400;color:var(--n);text-align:center;margin-bottom:6px}
@@ -291,16 +299,16 @@ tr:nth-child(even) td{background:#F8FAFC}
 <div class="fb-banner-txt" id="fb-banner-txt"></div>
 </div>
 <div class="pnl on" id="p-home"><div class="home">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding-top:4px"><span style="font-size:11px;color:#B0B8C4;font-weight:400">V. 34</span><span style="font-size:11px;color:#B0B8C4;font-weight:400" id="mt-last-sync"></span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding-top:4px"><span style="font-size:11px;color:#B0B8C4;font-weight:400">V. 35</span><span style="font-size:11px;color:#B0B8C4;font-weight:400" id="mt-last-sync"></span></div>
 <div class="grid">
 <div class="tile" onclick="goScreen('maint')"><span class="tile-icon">✅</span><div class="tile-name">Maintenance Tracker</div><div class="tile-desc">Stay on top of your home</div></div>
+<div class="tile" onclick="goScreen('schedule')"><span class="tile-icon">📞</span><div class="tile-name">Schedule a Call with Carl</div><div class="tile-desc">Pick a time that works for you</div></div>
 <div class="tile" onclick="openExt('https://carlcooper.exprealty.com/index.php?showagency=1&rtype=grid')"><span class="tile-icon">🔍</span><div class="tile-name">Search Homes</div><div class="tile-desc">Browse available listings</div></div>
-<div class="tile" onclick="openExt('https://www.mortgagenewsdaily.com/mortgage-rates')"><span class="tile-icon">📰</span><div class="tile-name">Current Rates</div><div class="tile-desc">View today's mortgage rates</div></div>
+<div class="tile" onclick="goScreen('buyer')"><span class="tile-icon">🏠</span><div class="tile-name">Buyer Estimate</div><div class="tile-desc">Estimate cash to close</div></div>
 <div class="tile" onclick="openExt('https://carlcooper.exprealty.com/seller/valuation/')"><span class="tile-icon">📊</span><div class="tile-name">What's My Home Worth?</div><div class="tile-desc">Get a free home value estimate</div></div>
 <div class="tile" onclick="goScreen('seller')"><span class="tile-icon">💰</span><div class="tile-name">Seller Estimate</div><div class="tile-desc">Estimate proceeds after costs</div></div>
-<div class="tile" onclick="goScreen('buyer')"><span class="tile-icon">🏠</span><div class="tile-name">Buyer Estimate</div><div class="tile-desc">Estimate cash to close</div></div>
 <div class="tile" onclick="goScreen('lenders')"><span class="tile-icon">🏦</span><div class="tile-name">Get Pre-Approved</div><div class="tile-desc">Connect with a trusted lender</div></div>
-<div class="tile" onclick="goScreen('schedule')"><span class="tile-icon">📞</span><div class="tile-name">Schedule a Call with Carl</div><div class="tile-desc">Pick a time that works for you</div></div>
+<div class="tile" onclick="openExt('https://www.mortgagenewsdaily.com/mortgage-rates')"><span class="tile-icon">📰</span><div class="tile-name">Current Rates</div><div class="tile-desc">View today's mortgage rates</div></div>
 <div class="tile" onclick="openExt('https://1drv.ms/b/c/f46b381c30d1c771/IQBizw5RpgefRofZFsS-5ld0AS8C4DhiZULUMGBvfcgYe4c?e=u36np8')"><span class="tile-icon">📬</span><div class="tile-name">The Home Hub Newsletter</div><div class="tile-desc">Your monthly resource</div></div>
 <div class="tile soon"><span class="tile-icon">🔲</span><div class="tile-name">Coming Soon</div><div class="tile-desc">New feature on the way</div></div>
 </div>
@@ -477,6 +485,20 @@ tr:nth-child(even) td{background:#F8FAFC}
 <button class="btn-calc" onclick="submitSchedule()">Send My Request</button>
 <div class="msg" id="sc-msg-out"></div>
 <div class="cta" style="margin-top:14px"><div class="cta-top"><p class="cta-p">Prefer to call directly? I am always happy to chat.</p><div class="cta-name">Carl Cooper</div><a href="tel:8174547267" class="cta-phone">817-454-7267</a></div></div>
+</div>
+</div>
+<div class="ci-modal-ov" id="ci-modal">
+<div class="ci-modal-card">
+<div class="ci-modal-hdr">Your Information</div>
+<div class="ci-modal-sub">Enter your info to save this estimate and get a copy.</div>
+<div class="fld"><label>Your Name</label><input type="text" id="ci-name" placeholder="First and Last Name"></div>
+<div class="fld"><label>Property Address</label><input type="text" id="ci-addr" placeholder="123 Main St, City, TX"></div>
+<div class="fld"><label>Email Address (optional)</label><input type="text" id="ci-email" placeholder="your@email.com"></div>
+<div class="msg" id="ci-modal-msg" style="margin:0 16px 4px"></div>
+<div class="ci-modal-btns">
+<button class="ci-btn-cancel" onclick="closeClientInfoModal()">Cancel</button>
+<button class="ci-btn-continue" onclick="submitClientInfo()">Continue</button>
+</div>
 </div>
 </div>
 <script>
@@ -677,13 +699,58 @@ function mtExport(){var byYear={};var keys=Object.keys(mtData.tasks);for(var ki=
   }if(navigator.share){navigator.share({title:"Home Maintenance Record - Carl Cooper",text:txt}).catch(function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("Copied! Paste into an email or document.");});}else{prompt("Copy your record:",txt);}});}else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){alert("Copied! Paste into an email or document to share your maintenance record.");}).catch(function(){prompt("Copy:",txt);});}else{prompt("Copy:",txt);}}
 function notifyMT(type){try{var d={};if(type==="setup"){d["_subject"]="New Maintenance Tracker - "+mtData.addr;d["Type"]="Maintenance Tracker Setup";d["Name"]=mtData.name||"Not provided";d["Address"]=mtData.addr;}else if(type==="export"){var total=0,done=0;for(var m=0;m<12;m++){var tl=TASKS[String(m)]||[];for(var i=0;i<tl.length;i++){total++;if(mtData.tasks[mtTaskKey(new Date().getFullYear(),m,i)])done++;}}d["_subject"]="POTENTIAL SELLER LEAD - Maintenance Export - "+mtData.addr;d["Type"]="Maintenance Export - POTENTIAL SELLER LEAD";d["Name"]=mtData.name||"Not provided";d["Address"]=mtData.addr;d["Tasks Completed"]=done+" of "+total+" this year";d["Note"]="This homeowner exported their maintenance record - they may be preparing to sell.";}var x=new XMLHttpRequest();x.open("POST",FS,true);x.setRequestHeader("Content-Type","application/json");x.setRequestHeader("Accept","application/json");x.send(JSON.stringify(d));}catch(e){}}
 
+var _ciPending=null;
+var _lastClientInfo={buyer:{},seller:{}};
+function openClientInfoModal(type,action){
+  _ciPending={type:type,action:action};
+  var pre=_lastClientInfo[type]||{};
+  el('ci-name').value=pre.name||'';
+  el('ci-addr').value=pre.addr||'';
+  el('ci-email').value=pre.email||'';
+  var m=el('ci-modal-msg');m.className='msg';m.style.display='none';m.textContent='';
+  el('ci-modal').className='ci-modal-ov on';
+}
+function closeClientInfoModal(){
+  el('ci-modal').className='ci-modal-ov';
+  _ciPending=null;
+}
+function submitClientInfo(){
+  if(!_ciPending)return;
+  var name=(el('ci-name').value||'').trim();
+  var addr=(el('ci-addr').value||'').trim();
+  var email=(el('ci-email').value||'').trim();
+  var msgEl=el('ci-modal-msg');
+  if(!name||!addr){
+    msgEl.className='msg err';msgEl.textContent='Name and property address are required.';
+    return;
+  }
+  if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    msgEl.className='msg err';msgEl.textContent='Please enter a valid email, or leave it blank.';
+    return;
+  }
+  var type=_ciPending.type,action=_ciPending.action;
+  _lastClientInfo[type]={name:name,addr:addr,email:email};
+  el('ci-modal').className='ci-modal-ov';
+  _ciPending=null;
+  if(action==='save'){doSaveEstimate(type,name,addr,email);}
+  else{doShareEstimate(type,name,addr,email);}
+}
 function shareResultsPDF(type){
+  openClientInfoModal(type,'share');
+}
+function doShareEstimate(type,name,addr,email){
+  window._pdfClientInfo={name:name,addr:addr,email:email};
   try{
-    var script=document.createElement('script');
-    script.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
-    script.onload=function(){buildAndSharePDF(type);};
-    document.head.appendChild(script);
+    if(window.jspdf&&window.jspdf.jsPDF){
+      buildAndSharePDF(type);
+    }else{
+      var script=document.createElement('script');
+      script.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+      script.onload=function(){buildAndSharePDF(type);};
+      document.head.appendChild(script);
+    }
   }catch(e){alert('Could not generate PDF. Please try again.');}
+  doSaveEstimate(type,name,addr,email);
 }
 function buildAndSharePDF(type){
   window._pdfShare=true;
@@ -778,9 +845,10 @@ function buildPDF(type){
   var today=new Date();
   var dateStr=(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
 
+  var _ci=window._pdfClientInfo||{};
   if(type==='seller'){
-    var sname=(document.getElementById('s-name').value||''). trim();
-    var saddr=document.getElementById('s-addr').value||'Not provided';
+    var sname=_ci.name||'';
+    var saddr=_ci.addr||'Not provided';
     var sclose=document.getElementById('s-close-date').value||'--';
     if(sname){doc.text('Prepared For:',8,py+6);doc.setFont('helvetica','normal');doc.text(sname,50,py+6);}
     doc.setFont('helvetica','bold');
@@ -790,8 +858,8 @@ function buildPDF(type){
     doc.setFont('helvetica','bold');
     doc.text('Estimated Closing Date:',W/2+2,py+12);doc.setFont('helvetica','normal');doc.text(sclose,W/2+35,py+12);
   }else{
-    var bname=(document.getElementById('b-name').value||''). trim();
-    var baddr=document.getElementById('b-addr').value||'Not provided';
+    var bname=_ci.name||'';
+    var baddr=_ci.addr||'Not provided';
     if(bname){doc.text('Prepared For:',8,py+6);doc.setFont('helvetica','normal');doc.text(bname,50,py+6);}
     doc.setFont('helvetica','bold');
     doc.text('Property Address:',8,py+12);doc.setFont('helvetica','normal');doc.text(baddr,50,py+12);
@@ -1169,35 +1237,29 @@ function loadEstimateById(type,id){
 function loadEstimate(type,id,e){
   if(type==="buyer"){
     if(e.price)document.getElementById("b-price").value=e.price;
-    if(e.dp)document.getElementById("b-dn").value=e.dp;
+    if(e.dp)document.getElementById("b-dp").value=e.dp;
     if(e.rate)document.getElementById("b-rate").value=e.rate;
-    if(e.term)document.getElementById("b-term").value=e.term;
-    if(e.tax)document.getElementById("b-tax").value=e.tax;
-    if(e.ins)document.getElementById("b-ins").value=e.ins;
-    if(e.hoa)document.getElementById("b-hoa").value=e.hoa;
-    if(e.lt)document.getElementById("b-lt").value=e.lt;
-    if(e.name)document.getElementById("b-name").value=e.name;
-    if(e.address)document.getElementById("b-addr").value=e.address;
-    onPrice();onDn();updateMI();
+    _lastClientInfo.buyer={name:e.name||"",addr:e.address||"",email:e.email||""};
+    calcBuyerSimp();
     document.querySelector("#p-buyer .slbl").scrollIntoView({behavior:"smooth"});
   }else{
     if(e.price)document.getElementById("s-price").value=e.price;
     if(e.bal)document.getElementById("s-bal").value=e.bal;
-    if(e.bc)document.getElementById("s-bc").value=e.bc;
-    if(e.lc)document.getElementById("s-lc").value=e.lc;
+    if(e.bc)document.getElementById("s-bc-pct").value=e.bc;
+    if(e.lc)document.getElementById("s-lc-pct").value=e.lc;
     if(e.closeDate)document.getElementById("s-close-date").value=e.closeDate;
-    if(e.name)document.getElementById("s-name").value=e.name;
-    if(e.address)document.getElementById("s-addr").value=e.address;
+    _lastClientInfo.seller={name:e.name||"",addr:e.address||"",email:e.email||""};
+    calcSellerSimp();
     document.querySelector("#p-seller .slbl").scrollIntoView({behavior:"smooth"});
   }
 }
-function notifySave(type,name,addr,payload){
+function notifySave(type,name,addr,payload,email){
   try{
     var d={};
     if(type==="buyer"){
       d["_subject"]="Buyer Estimate Saved - "+name+" - "+addr;
       d["Type"]="Buyer Estimate Saved";
-      d["Name"]=name;d["Address"]=addr;
+      d["Name"]=name;d["Address"]=addr;d["Client Email"]=email||"Not provided";
       d["Purchase Price"]="$"+(Math.round(payload.price||0)).toLocaleString();
       d["Down Payment"]=(payload.dp||0)+"%";
       d["Loan Amount"]="$"+(Math.round(payload.bl||0)).toLocaleString();
@@ -1207,7 +1269,7 @@ function notifySave(type,name,addr,payload){
     }else{
       d["_subject"]="Seller Estimate Saved - "+name+" - "+addr;
       d["Type"]="Seller Estimate Saved";
-      d["Name"]=name;d["Address"]=addr;
+      d["Name"]=name;d["Address"]=addr;d["Client Email"]=email||"Not provided";
       d["Sale Price"]="$"+(Math.round(payload.price||0)).toLocaleString();
       d["Net Proceeds"]=payload.netProceeds||"--";
       d["Total Costs"]=payload.totalCosts||"--";
@@ -1482,19 +1544,12 @@ function notifySellerSimp(price,bal,net){
   }catch(e){}
 }
 function saveSimpEstimate(type){
-  var nameEl=type==="buyer"?el("b-name"):el("s-name");
-  var addrEl=type==="buyer"?el("b-addr"):el("s-addr");
+  openClientInfoModal(type,'save');
+}
+function doSaveEstimate(type,name,addr,email){
   var msgEl=el(type+"-save-msg");
-  var name=nameEl?(nameEl.value||"").trim():"";
-  var addr=addrEl?(addrEl.value||"").trim():"";
-  if(!name||!addr){
-    var n=prompt("Your name (required to save):");
-    var a=prompt("Property address (required to save):");
-    if(!n||!a){msgEl.className="save-msg err";msgEl.textContent="Name and address required to save.";return;}
-    name=n;addr=a;
-  }
   msgEl.className="save-msg loading";msgEl.textContent="Saving...";
-  var payload={device_id:DEVICE_ID,type:type,name:name,address:addr};
+  var payload={device_id:DEVICE_ID,type:type,name:name,address:addr,email:email||""};
   if(type==="buyer"){
     var price=parseFloat(el("b-price").value)||0;
     var dp=parseFloat(el("b-dp").value)||0;
@@ -1516,7 +1571,7 @@ function saveSimpEstimate(type){
     if(err||!res||!res.success){msgEl.className="save-msg err";msgEl.textContent="Could not save. Please try again.";return;}
     msgEl.className="save-msg ok";msgEl.textContent="Saved! Find it at the top of this screen.";
     loadSavedEstimates(type);
-    notifySave(type,name,addr,payload);
+    notifySave(type,name,addr,payload,email);
   });
 }
 function shareSimpResults(type){
